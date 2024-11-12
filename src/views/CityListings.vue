@@ -1,6 +1,6 @@
 <template>
   <Navbar @search-city="handleSearchCity" />
-  <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
+  <div class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in filteredCities" :key="city.info.cityname"
       class="hover:cursor-grab shadow-lg hover:shadow-none">
       <router-link :to="`/city/${city.info.cityparameter}`">
@@ -22,7 +22,7 @@
           </div>
           <!-- City temperature and weather description -->
           <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
-            <p class="text-3xl mt-1 text-wrap font-semibold antialiased">{{ city.info.temperature }}°C</p>
+            <p class="text-3xl 2xl:text-xl xl:text-lg mt-1 text-wrap font-semibold antialiased">{{ city.info.temperature }}°C</p>
             <p class="text-sm antialiased italic">{{ city.info.description }}</p>
           </section>
         </CardContent>
