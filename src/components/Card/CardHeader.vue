@@ -1,5 +1,5 @@
 <template>
-    <div class="text-xl">
-      <slot></slot>
+    <div class="text-sm lg:text-lg xl:text-xl text-start">
+        <slot></slot>
     </div>
-  </template>
+</template>
