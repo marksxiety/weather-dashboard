@@ -1,35 +1,21 @@
-# weather-dashboard
+# Weather Dashboard
 
-This template should help get you started developing with Vue 3 in Vite.
+A responsive weather dashboard built with **Vue 3**, **Pinia**, **Tailwind CSS**, and **OpenWeatherMap API**. The app allows users to search for weather information by city and displays real-time weather data, such as temperature, humidity, and wind speed. It also saves recent searches for quick access.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **City Search**: Users can search for weather information by entering a city name.
+- **Weather Data**: Displays current temperature, humidity, wind speed, and weather condition.
+- **Weather Icon**: Displays an icon that corresponds to the weather condition.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Error Handling**: Displays error messages for invalid input or API failures.
 
-## Customize configuration
+## Tech Stack
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
+- **Frontend Framework**: Vue 3
+- **State Management**: Pinia
+- **CSS Framework**: Tailwind CSS
+- **HTTP Client**: Axios
+- **Weather API**: OpenWeatherMap API
+- **Persistent Storage**: localStorage (for recent searches)
+- **Testing**: Vitest + Vue Test Utils
