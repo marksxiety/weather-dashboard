@@ -60,8 +60,25 @@
 import Card from '@/components/Card/Card.vue'
 import CardContent from '@/components/Card/CardContent.vue'
 import { Icon } from '@iconify/vue'
+import axiosConfig from '@/plugins'
+import { reactive, onMounted } from 'vue'
 
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
-console.log(apiKey)
+const fetchCityWeather = async (country, city, apiKey) => {
+
+  try {
+    const response = await axiosConfig.get(`/weather?q=${city},${country}&appid=${apiKey}`);
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching weather for ${city}:`, error);
+    return null;
+  }
+}
+
+onMounted(() => {
+  fetchCityWeather('PH','Manila', apiKey)
+})
+
 </script>
