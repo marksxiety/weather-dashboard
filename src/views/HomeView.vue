@@ -66,12 +66,12 @@ const isLoaded = ref(false)
 
 // Reactive array of cities to fetch weather for, each city object includes its country, city name, and weather info
 const cities = reactive([
-  { country: 'PH', city: 'Manila', info: null },
-  { country: 'PH', city: 'Batangas', info: null },
-  { country: 'PH', city: 'Bohol', info: null },
-  { country: 'PH', city: 'Rizal', info: null },
-  { country: 'PH', city: 'Cebu', info: null },
-  { country: 'PH', city: 'Quezon', info: null },
+  { country: 'PH', city: 'Manila', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Batangas', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Bohol', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Rizal', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Cebu', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Quezon', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } }
 ])
 
 // Function to fetch weather data for a specific city using the OpenWeather API
