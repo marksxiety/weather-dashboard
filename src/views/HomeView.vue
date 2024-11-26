@@ -55,30 +55,79 @@
     </Card>
   </div>
 </template>
-
 <script setup>
 import Card from '@/components/Card/Card.vue'
 import CardContent from '@/components/Card/CardContent.vue'
 import { Icon } from '@iconify/vue'
 import axiosConfig from '@/plugins'
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, ref } from 'vue'
 
+// API key for accessing the weather data (stored in the .env file for security)
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
+// A flag to track whether the weather data has been successfully loaded
+const isLoaded = ref(false)
 
+// Reactive array of cities to fetch weather for, each city object includes its country, city name, and weather info
+const cities = reactive([
+  { country: 'PH', city: 'Manila', info: null },
+  { country: 'PH', city: 'Batangas', info: null },
+  { country: 'PH', city: 'Laguna', info: null },
+  { country: 'PH', city: 'Rizal', info: null },
+  { country: 'PH', city: 'Cebu', info: null },
+])
+
+// Function to fetch weather data for a specific city using the OpenWeather API
+// Parameters: 
+// - country: country code (e.g., 'PH' for the Philippines)
+// - city: name of the city (e.g., 'Manila')
+// - apiKey: your API key from OpenWeather
 const fetchCityWeather = async (country, city, apiKey) => {
-
   try {
+    // Sending the GET request to the OpenWeather API
     const response = await axiosConfig.get(`/weather?q=${city},${country}&appid=${apiKey}`);
-    console.log(response.data)
-    return response.data;
+    return response.data; // Return the response data containing weather information
   } catch (error) {
+    // Log any errors that occur while fetching the weather data
     console.error(`Error fetching weather for ${city}:`, error);
-    return null;
+    return null; // Return null in case of an error
   }
 }
 
-onMounted(() => {
-  fetchCityWeather('PH','Manila', apiKey)
-})
+// Function to fetch weather information for all cities in the cities array
+// It updates each city's weather info object with the necessary data
+const fetchOverallCityWeather = async () => {
+  // Loop through each city in the cities array
+  for (let city of cities) {
+    // Fetch the weather data for the current city
+    let weatherInfo = await fetchCityWeather(city.country, city.city, apiKey);
+    if (weatherInfo) {
+      // Update the city's 'info' object with specific weather details
+      // Only the necessary data for display is populated to optimize performance
+      city.info = {
+        id: weatherInfo.id,               // City ID
+        cityname: weatherInfo.name,       // City Name
+        weather: weatherInfo.weather[0].main, // Main weather condition (e.g., Clear, Rainy)
+        description: weatherInfo.weather[0].description, // Description of weather (e.g., Clear sky)
+        humidity: weatherInfo.main.humidity, // Humidity percentage
+        windspeed: weatherInfo.wind.speed,  // Wind speed in km/h
+        temperature: weatherInfo.main.feels_like, // Temperature feels like
+        highlow: `${weatherInfo.main.temp_max} / ${weatherInfo.main.temp_min}` // High/Low temperature
+      }
+    }
+  }
+}
 
+// This will run when the component is mounted
+onMounted(async () => {
+  // Fetch weather data for all cities
+  let loadcities = await fetchOverallCityWeather();
+
+  if (loadcities) {
+    // If the data is successfully fetched, mark the loading as complete
+    isLoaded.value = true;
+  }
+
+  // Log the updated cities array with their weather info
+  console.log(cities);
+});
 </script>
