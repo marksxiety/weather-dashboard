@@ -44,7 +44,7 @@
 
           <!-- High/Low Temps -->
           <div class="flex items-center space-x-2">
-            <Icon icon="fluent:temperature-high-16-regular" class="h-8 w-8 text-red-400" />
+            <Icon icon="mingcute:high-temperature-line" class="h-8 w-8 text-red-400" />
             <div class="flex flex-col">
               <p class="text-sm font-semibold">29°C / 22°C</p>
               <p class="text-xs text-gray-500">High / Low</p>
