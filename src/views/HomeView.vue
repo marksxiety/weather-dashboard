@@ -57,7 +57,11 @@
 </template>
 
 <script setup>
-import Card from '@/components/Card/Card.vue';
-import CardContent from '@/components/Card/CardContent.vue';
-import { Icon } from '@iconify/vue';
+import Card from '@/components/Card/Card.vue'
+import CardContent from '@/components/Card/CardContent.vue'
+import { Icon } from '@iconify/vue'
+
+const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
+
+console.log(apiKey)
 </script>
