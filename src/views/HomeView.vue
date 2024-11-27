@@ -12,42 +12,26 @@
 
         <!-- Additional Weather Metrics -->
         <section class="grid grid-cols-2 w-full mt-4 gap-4">
+
           <!-- Humidity -->
-          <div class="flex items-center space-x-2">
-            <Icon icon="carbon:humidity-alt" class="h-8 w-8 text-blue-400" />
-            <div class="flex flex-col">
-              <p class="text-sm font-semibold">{{ city.info.humidity }}%</p>
-              <p class="text-xs text-gray-500">Humidity</p>
-            </div>
-          </div>
+          <WeatherMetrics logo="carbon:humidity-alt" label="Humidity" :value="city.info.humidity + '%'"
+            logocolor="text-blue-400" height="h-8" width="w-8" />
 
           <!-- Wind Speed -->
-          <div class="flex items-center space-x-2">
-            <Icon icon="meteor-icons:wind" class="h-8 w-8 text-gray-500" />
-            <div class="flex flex-col">
-              <p class="text-sm font-semibold">{{ city.info.windspeed }} km/h</p>
-              <p class="text-xs text-gray-500">Wind Speed</p>
-            </div>
-          </div>
+          <WeatherMetrics logo="meteor-icons:wind" label="Wind Speed" :value="city.info.windspeed + ' km/h'"
+            logocolor="text-gray-500" height="h-8" width="w-8" />
 
           <!-- Feels Like -->
-          <div class="flex items-center space-x-2">
-            <Icon icon="fluent:temperature-16-regular" class="h-8 w-8 text-orange-400" />
-            <div class="flex flex-col">
-              <p class="text-sm font-semibold">{{ city.info.temperature }}°C</p>
-              <p class="text-xs text-gray-500">Feels Like</p>
-            </div>
-          </div>
+          <WeatherMetrics logo="fluent:temperature-16-regular" label="Feels Like" :value="city.info.temperature + '°C'"
+            logocolor="text-orange-400" height="h-8" width="w-8" />
 
           <!-- High/Low Temps -->
-          <div class="flex items-center space-x-2">
-            <Icon icon="mingcute:high-temperature-line" class="h-8 w-8 text-red-400" />
-            <div class="flex flex-col">
-              <p class="text-sm font-semibold">{{ city.info.hightemp }}°C / {{ city.info.lowtemp }}°C</p>
-              <p class="text-xs text-gray-500">High / Low</p>
-            </div>
-          </div>
+          <WeatherMetrics logo="mingcute:high-temperature-line" label="High / Low"
+            :value="city.info.hightemp + '°C / ' + city.info.lowtemp + '°C'" logocolor="text-red-400" height="h-8"
+            width="w-8" />
+
         </section>
+
       </CardContent>
     </Card>
   </div>
@@ -58,6 +42,7 @@ import CardContent from '@/components/Card/CardContent.vue'
 import { Icon } from '@iconify/vue'
 import axiosConfig from '@/plugins'
 import { reactive, onMounted, ref } from 'vue'
+import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
 
 // API key for accessing the weather data (stored in the .env file for security)
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
