@@ -1,55 +1,55 @@
 <template>
   <div class="p-4 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
-      <Card v-for="city in cities" :key="city">
-        <CardContent class="flex flex-col items-center">
-          <!-- Weather Icon -->
-          <Icon icon="fluent:weather-partly-cloudy-day-16-regular" class="min-h-24 h-24 w-full" />
+    <Card v-for="city in cities" :key="city">
+      <CardContent class="flex flex-col items-center">
+        <!-- Weather Icon -->
+        <Icon icon="fluent:weather-partly-cloudy-day-16-regular" class="min-h-24 h-24 w-full" />
 
-          <!-- City and Weather Info -->
-          <p class="text-lg font-semibold mt-2">{{ city.info.cityname }}</p>
-          <p class="text-sm text-gray-500"> {{ city.info.description }}</p>
-          <p class="text-md mt-1 font-medium">26°C</p>
+        <!-- City and Weather Info -->
+        <p class="text-lg font-semibold mt-2">{{ city.info.cityname }}</p>
+        <p class="text-sm text-gray-500"> {{ city.info.description }}</p>
+        <p class="text-md mt-1 font-medium">26°C</p>
 
-          <!-- Additional Weather Metrics -->
-          <section class="grid grid-cols-2 w-full mt-4 gap-4">
-            <!-- Humidity -->
-            <div class="flex items-center space-x-2">
-              <Icon icon="carbon:humidity-alt" class="h-8 w-8 text-blue-400" />
-              <div class="flex flex-col">
-                <p class="text-sm font-semibold">{{ city.info.humidity }}%</p>
-                <p class="text-xs text-gray-500">Humidity</p>
-              </div>
+        <!-- Additional Weather Metrics -->
+        <section class="grid grid-cols-2 w-full mt-4 gap-4">
+          <!-- Humidity -->
+          <div class="flex items-center space-x-2">
+            <Icon icon="carbon:humidity-alt" class="h-8 w-8 text-blue-400" />
+            <div class="flex flex-col">
+              <p class="text-sm font-semibold">{{ city.info.humidity }}%</p>
+              <p class="text-xs text-gray-500">Humidity</p>
             </div>
+          </div>
 
-            <!-- Wind Speed -->
-            <div class="flex items-center space-x-2">
-              <Icon icon="meteor-icons:wind" class="h-8 w-8 text-gray-500" />
-              <div class="flex flex-col">
-                <p class="text-sm font-semibold">{{ city.info.windspeed }} km/h</p>
-                <p class="text-xs text-gray-500">Wind Speed</p>
-              </div>
+          <!-- Wind Speed -->
+          <div class="flex items-center space-x-2">
+            <Icon icon="meteor-icons:wind" class="h-8 w-8 text-gray-500" />
+            <div class="flex flex-col">
+              <p class="text-sm font-semibold">{{ city.info.windspeed }} km/h</p>
+              <p class="text-xs text-gray-500">Wind Speed</p>
             </div>
+          </div>
 
-            <!-- Feels Like -->
-            <div class="flex items-center space-x-2">
-              <Icon icon="fluent:temperature-16-regular" class="h-8 w-8 text-orange-400" />
-              <div class="flex flex-col">
-                <p class="text-sm font-semibold">{{ city.info.temperature}}°C</p>
-                <p class="text-xs text-gray-500">Feels Like</p>
-              </div>
+          <!-- Feels Like -->
+          <div class="flex items-center space-x-2">
+            <Icon icon="fluent:temperature-16-regular" class="h-8 w-8 text-orange-400" />
+            <div class="flex flex-col">
+              <p class="text-sm font-semibold">{{ city.info.temperature }}°C</p>
+              <p class="text-xs text-gray-500">Feels Like</p>
             </div>
+          </div>
 
-            <!-- High/Low Temps -->
-            <div class="flex items-center space-x-2">
-              <Icon icon="mingcute:high-temperature-line" class="h-8 w-8 text-red-400" />
-              <div class="flex flex-col">
-                <p class="text-sm font-semibold">{{ city.info.hightemp }}°C / {{ city.info.lowtemp }}°C</p>
-                <p class="text-xs text-gray-500">High / Low</p>
-              </div>
+          <!-- High/Low Temps -->
+          <div class="flex items-center space-x-2">
+            <Icon icon="mingcute:high-temperature-line" class="h-8 w-8 text-red-400" />
+            <div class="flex flex-col">
+              <p class="text-sm font-semibold">{{ city.info.hightemp }}°C / {{ city.info.lowtemp }}°C</p>
+              <p class="text-xs text-gray-500">High / Low</p>
             </div>
-          </section>
-        </CardContent>
-      </Card>
+          </div>
+        </section>
+      </CardContent>
+    </Card>
   </div>
 </template>
 <script setup>
@@ -90,6 +90,29 @@ const fetchCityWeather = async (country, city, apiKey) => {
     return null; // Return null in case of an error
   }
 }
+
+const mainLogoIdentifier = (weather) => {
+
+  const weatherConditions = [
+    { main: "thunderstorm", icon: null },
+    { main: "drizzle", icon: null },
+    { main: "rain", icon: null },
+    { main: "snow", icon: null },
+    { main: "clear", icon: null },
+    { main: "clouds", icon: null },
+    { main: "mist", icon: null },
+    { main: "smoke", icon: null },
+    { main: "haze", icon: null },
+    { main: "dust", icon: null },
+    { main: "fog", icon: null },
+    { main: "sand", icon: null },
+    { main: "ash", icon: null },
+    { main: "squall", icon: null },
+    { main: "tornado", icon: null }
+  ]
+
+}
+
 
 // Function to fetch weather information for all cities in the cities array
 // It updates each city's weather info object with the necessary data
