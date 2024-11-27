@@ -3,7 +3,7 @@
     <Card v-for="city in cities" :key="city">
       <CardContent class="flex flex-col items-center">
         <!-- Weather Icon -->
-        <Icon icon="fluent:weather-partly-cloudy-day-16-regular" class="min-h-24 h-24 w-full" />
+        <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-24 h-24 w-full" />
 
         <!-- City and Weather Info -->
         <p class="text-lg font-semibold mt-2">{{ city.info.cityname }}</p>
@@ -91,7 +91,7 @@ const fetchCityWeather = async (country, city, apiKey) => {
   }
 }
 
-const mainLogoIdentifier = (weather) => {
+const mainLogoIdentifier = (weather = '') => {
 
   const weatherConditions = [
     { main: "thunderstorm", icon: 'ion:thunderstorm-outline' },
@@ -111,6 +111,12 @@ const mainLogoIdentifier = (weather) => {
     { main: "tornado", icon: 'tabler:tornado' }
   ]
 
+  for (let condition of weatherConditions) {
+    if (weather.trim().toLowerCase() == condition.main) {
+      return condition.icon
+    }
+  }
+  return 'hugeicons:file-not-found'
 }
 
 
