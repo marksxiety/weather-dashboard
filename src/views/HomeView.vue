@@ -94,21 +94,21 @@ const fetchCityWeather = async (country, city, apiKey) => {
 const mainLogoIdentifier = (weather) => {
 
   const weatherConditions = [
-    { main: "thunderstorm", icon: null },
-    { main: "drizzle", icon: null },
-    { main: "rain", icon: null },
-    { main: "snow", icon: null },
-    { main: "clear", icon: null },
-    { main: "clouds", icon: null },
-    { main: "mist", icon: null },
-    { main: "smoke", icon: null },
-    { main: "haze", icon: null },
-    { main: "dust", icon: null },
-    { main: "fog", icon: null },
-    { main: "sand", icon: null },
-    { main: "ash", icon: null },
-    { main: "squall", icon: null },
-    { main: "tornado", icon: null }
+    { main: "thunderstorm", icon: 'ion:thunderstorm-outline' },
+    { main: "drizzle", icon: 'carbon:rain-drizzle' },
+    { main: "rain", icon: 'bi:cloud-rain' },
+    { main: "snow", icon: 'hugeicons:snow' },
+    { main: "clear", icon: 'fluent:weather-sunny-low-48-regular' },
+    { main: "clouds", icon: 'bi:clouds' },
+    { main: "mist", icon: 'tabler:mist' },
+    { main: "smoke", icon: 'mdi:smoke' },
+    { main: "haze", icon: 'lucide:haze' },
+    { main: "dust", icon: 'wi:dust' },
+    { main: "fog", icon: 'carbon:fog' },
+    { main: "sand", icon: 'lsicon:sand-outline' },
+    { main: "ash", icon: 'streamline:volcano' },
+    { main: "squall", icon: 'fluent:weather-squalls-20-regular' },
+    { main: "tornado", icon: 'tabler:tornado' }
   ]
 
 }
