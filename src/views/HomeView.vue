@@ -7,7 +7,7 @@
 
         <!-- City and Weather Info -->
         <p class="text-lg font-semibold mt-2">{{ city.info.cityname }}</p>
-        <p class="text-sm text-gray-500"> {{ city.info.description }}</p>
+        <p class="text-sm"> {{ city.info.description }}</p>
         <p class="text-md mt-1 font-medium">26°C</p>
 
         <!-- Additional Weather Metrics -->
