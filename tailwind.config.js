@@ -7,11 +7,12 @@ export default {
         sans: ['Poppins', 'sans-serif'],
       },
       colors: {
-        primary: '#3E2522',
-        secondary: '#8C6E63',
-        tertiary: '#D3A376',
-        accent: '#FFE0B2',
-        light: '#FFF2DF',
+        primary: '#3B82F6',    // Bright blue (clear skies)
+        secondary: '#F59E0B',  // Warm gold (sunny)
+        tertiary: '#10B981',   // Soft green (mild weather)
+        accent: '#F43F5E',     // Vibrant red (rain/storm)
+        background: '#F9FAFB', // Light gray (background)
+        dark: '#1F2937',       // Dark charcoal (text and accents)
       },
     },
   },
