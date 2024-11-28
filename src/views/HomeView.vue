@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
+  <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in cities" :key="city">
       <CardContent class="flex flex-col items-center">
         <!-- Weather Icon -->

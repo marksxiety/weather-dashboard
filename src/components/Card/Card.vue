@@ -1,5 +1,6 @@
 <template>
-    <div class="flex flex-col min-h-24 rounded-lg border border-solid p-4">
-        <slot></slot>
+    <div class="flex flex-col h-full w-full rounded-lg border-2 p-4 border-sky-500">
+      <slot></slot>
     </div>
-</template>
+  </template>
+  
