@@ -1,0 +1,94 @@
+{
+    "cities": [
+      {
+        "id": 1,
+        "country": "PH",
+        "city": "Manila",
+        "info": {
+          "cityname": "Loading...",
+          "description": "Loading...",
+          "temperature": "N/A",
+          "humidity": "N/A",
+          "windspeed": "N/A",
+          "hightemp": "N/A",
+          "lowtemp": "N/A"
+        },
+        "lastupdate": "2024-11-29T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "country": "PH",
+        "city": "Batangas",
+        "info": {
+          "cityname": "Loading...",
+          "description": "Loading...",
+          "temperature": "N/A",
+          "humidity": "N/A",
+          "windspeed": "N/A",
+          "hightemp": "N/A",
+          "lowtemp": "N/A"
+        },
+        "lastupdate": "2024-11-29T00:00:00Z"
+      },
+      {
+        "id": 3,
+        "country": "PH",
+        "city": "Bohol",
+        "info": {
+          "cityname": "Loading...",
+          "description": "Loading...",
+          "temperature": "N/A",
+          "humidity": "N/A",
+          "windspeed": "N/A",
+          "hightemp": "N/A",
+          "lowtemp": "N/A"
+        },
+        "lastupdate": "2024-11-29T00:00:00Z"
+      },
+      {
+        "id": 4,
+        "country": "PH",
+        "city": "Rizal",
+        "info": {
+          "cityname": "Loading...",
+          "description": "Loading...",
+          "temperature": "N/A",
+          "humidity": "N/A",
+          "windspeed": "N/A",
+          "hightemp": "N/A",
+          "lowtemp": "N/A"
+        },
+        "lastupdate": "2024-11-29T00:00:00Z"
+      },
+      {
+        "id": 5,
+        "country": "PH",
+        "city": "Cebu",
+        "info": {
+          "cityname": "Loading...",
+          "description": "Loading...",
+          "temperature": "N/A",
+          "humidity": "N/A",
+          "windspeed": "N/A",
+          "hightemp": "N/A",
+          "lowtemp": "N/A"
+        },
+        "lastupdate": "2024-11-29T00:00:00Z"
+      },
+      {
+        "id": 6,
+        "country": "PH",
+        "city": "Quezon",
+        "info": {
+          "cityname": "Loading...",
+          "description": "Loading...",
+          "temperature": "N/A",
+          "humidity": "N/A",
+          "windspeed": "N/A",
+          "hightemp": "N/A",
+          "lowtemp": "N/A"
+        },
+        "lastupdate": "2024-11-29T00:00:00Z"
+      }
+    ]
+  }  
