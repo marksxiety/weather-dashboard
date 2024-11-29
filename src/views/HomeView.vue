@@ -1,7 +1,7 @@
 <template>
   <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in cities" :key="city">
-      <CardContent class="grid grid-cols-3 items-center">
+      <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
         <!-- Weather Icon -->
 
 
@@ -14,11 +14,12 @@
         </section>
 
         <div class="flex justify-center w-full h-full">
-          <span class="w-0.5 h-full border border-primary"></span>
+          <span class="w-full md:w-0.5 lg:w-0.5 h-full border border-primary hidden sm:block"></span>
+          <hr class="w-full h-0.5 border-primary block sm:hidden">
         </div>
 
         <!-- Additional Weather Metrics -->
-        <section class="flex flex-col gap-4 justify-center">
+        <section class="flex flex-row md:flex-col gap-4 justify-center">
 
           <!-- Humidity -->
           <WeatherMetrics logo="carbon:humidity-alt" label="Humidity" :value="city.info.humidity + '%'"
