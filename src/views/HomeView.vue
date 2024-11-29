@@ -12,8 +12,9 @@
           <p class="text-sm"> {{ city.info.description }}</p>
           <p class="text-md mt-1 font-medium">26°C</p>
         </section>
-        <div class="flex justify-center items-center">
-          <hr class="w-full h-0.3 bg-primary transform rotate-90" />
+
+        <div class="flex justify-center w-full h-full">
+          <span class="w-0.5 h-full border border-primary"></span>
         </div>
 
         <!-- Additional Weather Metrics -->
