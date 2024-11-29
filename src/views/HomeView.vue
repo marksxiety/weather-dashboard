@@ -1,6 +1,10 @@
 <template>
   <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in cities" :key="city">
+      <CardHeader class="pr-2 pl-2">
+        <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
+        <hr class="bg-primary h-0.5">
+      </CardHeader>
       <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
         <!-- Weather Icon -->
 
@@ -8,7 +12,6 @@
         <!-- City and Weather Info -->
         <section class="flex flex-col gap-4 items-center">
           <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-24 h-24 w-full" />
-          <p class="text-lg font-semibold mt-2">{{ city.info.cityname }}</p>
           <p class="text-sm"> {{ city.info.description }}</p>
           <p class="text-md mt-1 font-medium">26°C</p>
         </section>
@@ -47,6 +50,7 @@
 <script setup>
 import Card from '@/components/Card/Card.vue'
 import CardContent from '@/components/Card/CardContent.vue'
+import CardHeader from '@/components/Card/CardHeader.vue'
 import { Icon } from '@iconify/vue'
 import axiosConfig from '@/plugins'
 import { reactive, onMounted, ref } from 'vue'
