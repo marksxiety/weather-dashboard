@@ -14,7 +14,7 @@
         </section>
 
         <!-- Additional Weather Metrics -->
-        <section class="flex flex-col gap-4 items-end">
+        <section class="flex flex-col gap-4 justify-center">
 
           <!-- Humidity -->
           <WeatherMetrics logo="carbon:humidity-alt" label="Humidity" :value="city.info.humidity + '%'"
