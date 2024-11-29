@@ -17,8 +17,8 @@
         </section>
 
         <div class="flex justify-center w-full h-full">
-          <span class="w-full md:w-0.5 lg:w-0.5 h-full border border-primary hidden sm:block"></span>
-          <hr class="w-full h-0.5 border-primary block sm:hidden">
+          <span class="w-full md:w-0.5 lg:w-0.5 h-full bg-primary hidden sm:block"></span>
+          <hr class="w-full h-0.5 bg-primary block sm:hidden">
         </div>
 
         <!-- Additional Weather Metrics -->
