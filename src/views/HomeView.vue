@@ -12,8 +12,8 @@
         <!-- City and Weather Info -->
         <section class="flex flex-col gap-4 items-center">
           <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-24 h-24 w-full" />
-          <p class="text-sm"> {{ city.info.description }}</p>
-          <p class="text-md mt-1 font-medium">26°C</p>
+          <p class="text-sm antialiased italic"> {{ city.info.description }}</p>
+          <p class="text-4xl mt-1 font-semibold  antialiased ">26°C</p>
         </section>
 
         <div class="flex justify-center w-full h-full">
