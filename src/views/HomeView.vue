@@ -1,17 +1,20 @@
 <template>
   <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in cities" :key="city">
-      <CardContent class="flex flex-col items-center">
+      <CardContent class="grid grid-cols-2 items-center">
         <!-- Weather Icon -->
-        <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-24 h-24 w-full" />
+
 
         <!-- City and Weather Info -->
-        <p class="text-lg font-semibold mt-2">{{ city.info.cityname }}</p>
-        <p class="text-sm"> {{ city.info.description }}</p>
-        <p class="text-md mt-1 font-medium">26°C</p>
+        <section class="flex flex-col gap-4 items-center">
+          <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-24 h-24 w-full" />
+          <p class="text-lg font-semibold mt-2">{{ city.info.cityname }}</p>
+          <p class="text-sm"> {{ city.info.description }}</p>
+          <p class="text-md mt-1 font-medium">26°C</p>
+        </section>
 
         <!-- Additional Weather Metrics -->
-        <section class="grid grid-cols-2 w-full mt-4 gap-4">
+        <section class="flex flex-col gap-4 items-end">
 
           <!-- Humidity -->
           <WeatherMetrics logo="carbon:humidity-alt" label="Humidity" :value="city.info.humidity + '%'"
