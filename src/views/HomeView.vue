@@ -1,7 +1,7 @@
 <template>
   <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in cities" :key="city">
-      <CardContent class="grid grid-cols-2 items-center">
+      <CardContent class="grid grid-cols-3 items-center">
         <!-- Weather Icon -->
 
 
@@ -12,6 +12,9 @@
           <p class="text-sm"> {{ city.info.description }}</p>
           <p class="text-md mt-1 font-medium">26°C</p>
         </section>
+        <div class="flex justify-center items-center">
+          <hr class="w-full h-0.3 bg-primary transform rotate-90" />
+        </div>
 
         <!-- Additional Weather Metrics -->
         <section class="flex flex-col gap-4 justify-center">
