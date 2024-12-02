@@ -1,4 +1,5 @@
 <template>
+  <Navbar/>
   <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in cities" :key="city">
       <CardHeader class="pr-2 pl-2">
@@ -55,6 +56,7 @@ import { Icon } from '@iconify/vue'
 import axiosConfig from '@/plugins'
 import { reactive, onMounted, ref } from 'vue'
 import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
 
 // API key for accessing the weather data (stored in the .env file for security)
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
