@@ -19,6 +19,10 @@
             <NavbarCard>
                 <Icon icon="icon-park-outline:add" class="w-8 h-6" />
             </NavbarCard>
+            <NavbarCard>
+                <Icon icon="lucide:sun"  class="w-8 h-6" />
+                <Icon icon="lucide:moon"  class="w-8 h-6" hidden/>
+            </NavbarCard>
         </div>
     </div>
 </template>
