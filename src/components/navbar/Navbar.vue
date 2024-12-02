@@ -15,12 +15,13 @@
             </div>
         </div>
         <div class="flex justify-between gap-2 items-center">
-            <Icon icon="solar:settings-outline" />
-            <Icon icon="icon-park-outline:add" />
+            <NavbarCard><Icon icon="solar:settings-outline" class="w-8 h-6"/></NavbarCard>
+            <NavbarCard><Icon icon="icon-park-outline:add" class="w-8 h-6"/></NavbarCard>
         </div>
     </div>
 </template>
 
 <script setup>
 import { Icon } from '@iconify/vue'
+import NavbarCard from './NavbarCard.vue'
 </script>
