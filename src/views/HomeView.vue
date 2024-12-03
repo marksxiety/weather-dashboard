@@ -6,7 +6,7 @@
         <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
         <hr class="bg-primary h-0.5">
       </CardHeader>
-      <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 items-center gap-2">
+      <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 items-center gap-2">
         <!-- Weather Icon -->
 
 
