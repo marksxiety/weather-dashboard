@@ -2,7 +2,8 @@
   <Navbar @search-city="handleSearchCity" />
   <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in filteredCities" :key="city.info.cityname">
-      <CardHeader class="pr-2 pl-2">
+      <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
+        <Icon icon="mdi:location" width="28" height="full" class="text-red-600"/>
         <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
         <!-- <hr class="bg-primary h-0.5"> -->
       </CardHeader>
