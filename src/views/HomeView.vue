@@ -6,53 +6,40 @@
         <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
         <!-- <hr class="bg-primary h-0.5"> -->
       </CardHeader>
-      <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 items-center gap-2">
+
+      <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
         <!-- Weather Icon -->
         <section class="flex flex-col gap-4 items-center">
-          <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-24 h-24 w-full" />
-          <p class="text-sm antialiased italic">{{ city.info.description }}</p>
-          <p class="text-2xl mt-1 text-wrap font-semibold antialiased">{{ city.info.temperature }}°C</p>
+          <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-32 h-32 w-full" />
         </section>
+
+        <!-- Span to have a separation for icon and description -->
         <div class="flex justify-center w-full h-full">
-          <span class="w-full md:w-0.5 lg:w-0.5 h-full bg-primary hidden sm:block"></span>
-          <hr class="w-full h-0.5 bg-primary block sm:hidden">
+          <span class="w-full md:w-0.5 lg:w-0.5 h-full bg-separator hidden sm:block"></span>
         </div>
-        <section class="flex flex-row md:flex-col gap-4 justify-center col-span-2">
-          <!-- Weather Metrics -->
-          <WeatherMetrics
-            logo="carbon:humidity-alt"
-            label="Humidity"
-            :value="city.info.humidity + '%'"
-            logocolor="text-blue-400"
-            height="h-full"
-            width="max-w-8 w-full"
-          />
-          <WeatherMetrics
-            logo="meteor-icons:wind"
-            label="Wind Speed"
-            :value="city.info.windspeed + ' km/h'"
-            logocolor="text-gray-500"
-            height="h-full"
-            width="max-w-8 w-full"
-          />
-          <WeatherMetrics
-            logo="fluent:temperature-16-regular"
-            label="Feels Like"
-            :value="city.info.temperature + '°C'"
-            logocolor="text-orange-400"
-            height="h-full"
-            width="max-w-8 w-full"
-          />
-          <WeatherMetrics
-            logo="mingcute:high-temperature-line"
-            label="High / Low"
-            :value="city.info.hightemp + '°C / ' + city.info.lowtemp + '°C'"
-            logocolor="text-red-400"
-            height="h-full"
-            width="max-w-8 w-full"
-          />
+        <!-- City temperature and weather description -->
+        <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
+          <p class="text-2xl mt-1 text-wrap font-semibold antialiased">{{ city.info.temperature }}°C</p>
+          <p class="text-sm antialiased italic">{{ city.info.description }}</p>
         </section>
       </CardContent>
+
+      <CardFooter class="grid grid-cols-2 gap-4">
+        <!-- Weather Metrics -->
+        <div class="flex flex-col gap-4">
+          <WeatherMetrics logo="carbon:humidity-alt" label="Humidity" :value="city.info.humidity + '%'"
+            logocolor="text-blue-400" height="h-full" width="max-w-8 w-full" />
+          <WeatherMetrics logo="meteor-icons:wind" label="Wind Speed" :value="city.info.windspeed + ' km/h'"
+            logocolor="text-gray-500" height="h-full" width="max-w-8 w-full" />
+        </div>
+        <div class="flex flex-col gap-4">
+          <WeatherMetrics logo="fluent:temperature-16-regular" label="Feels Like" :value="city.info.temperature + '°C'"
+            logocolor="text-orange-400" height="h-full" width="max-w-8 w-full" />
+          <WeatherMetrics logo="mingcute:high-temperature-line" label="High / Low"
+            :value="city.info.hightemp + '°C / ' + city.info.lowtemp + '°C'" logocolor="text-red-400" height="h-full"
+            width="max-w-8 w-full" />
+        </div>
+      </CardFooter>
     </Card>
   </div>
 </template>
@@ -64,6 +51,7 @@ import Navbar from '@/components/navbar/Navbar.vue'
 import Card from '@/components/Card/Card.vue'
 import CardHeader from '@/components/Card/CardHeader.vue'
 import CardContent from '@/components/Card/CardContent.vue'
+import CardFooter from '@/components/Card/CardFooter.vue'
 import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
 import { Icon } from '@iconify/vue'
 import axiosConfig from '@/plugins'
