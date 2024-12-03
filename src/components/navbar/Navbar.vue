@@ -8,9 +8,9 @@
             <div class="shrink-0 select-none text-base text-gray-500 sm:text-sm/6">
                 <Icon icon="lucide:search" />
             </div>
-            <input type="text" name="price" id="price"
+            <input type="text" name="search" id="search"
                 class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
-                placeholder="cities here..." />
+                placeholder="Search cities..." v-model="searchValue" @input="handleSearch" />
         </div>
         <div class="flex justify-between gap-4 items-center">
             <NavbarCard>
@@ -20,14 +20,22 @@
                 <Icon icon="icon-park-outline:add" class="w-8 h-6" />
             </NavbarCard>
             <NavbarCard>
-                <Icon icon="lucide:sun"  class="w-8 h-6" />
-                <Icon icon="lucide:moon"  class="w-8 h-6" hidden/>
+                <Icon icon="lucide:sun" class="w-8 h-6" />
+                <Icon icon="lucide:moon" class="w-8 h-6" hidden />
             </NavbarCard>
         </div>
     </div>
 </template>
 
 <script setup>
-import { Icon } from '@iconify/vue'
-import NavbarCard from './NavbarCard.vue'
+import { ref, defineEmits } from 'vue';
+import { Icon } from '@iconify/vue';
+import NavbarCard from './NavbarCard.vue';
+
+const searchValue = ref('');
+
+const emit = defineEmits(['search-city']);
+const handleSearch = () => {
+    emit('search-city', searchValue.value);
+};
 </script>
