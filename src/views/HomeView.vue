@@ -55,6 +55,7 @@ import CardFooter from '@/components/Card/CardFooter.vue'
 import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
 import { Icon } from '@iconify/vue'
 import axiosConfig from '@/plugins'
+import { RouterLink } from 'vue-router'
 
 // API Key
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
@@ -112,6 +113,8 @@ const fetchOverallCityWeather = async () => {
         hightemp: weatherInfo.main.temp_max,
         lowtemp: weatherInfo.main.temp_min,
         weather: weatherInfo.weather[0].main,
+        cityparameter: city.city,
+        countryparamter: city.country
       }
     }
   }
