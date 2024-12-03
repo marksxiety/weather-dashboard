@@ -14,14 +14,14 @@
         </div>
         <div class="flex justify-between gap-4 items-center">
             <NavbarCard>
-                <Icon icon="solar:settings-outline" class="w-8 h-6" />
+                <Icon icon="mdi:cloud-cog-outline" class="w-8 h-9" />
             </NavbarCard>
             <NavbarCard>
-                <Icon icon="icon-park-outline:add" class="w-8 h-6" />
+                <Icon icon="fluent:cloud-add-20-regular" class="w-8 h-9" />
             </NavbarCard>
             <NavbarCard>
-                <Icon icon="lucide:sun" class="w-8 h-6" />
-                <Icon icon="lucide:moon" class="w-8 h-6" hidden />
+                <Icon icon="lucide:sun" class="w-8 h-9" />
+                <Icon icon="lucide:moon" class="w-8 h-9" hidden />
             </NavbarCard>
         </div>
     </div>
