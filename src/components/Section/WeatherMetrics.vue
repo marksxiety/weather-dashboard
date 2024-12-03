@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center space-x-2 w-full">
+    <div class="flex flex-row gap-x-4 w-full">
       <Icon :icon="logo" :class="[height, width, logocolor]" />
       <div class="flex flex-col">
         <p :class="valueClass">{{ value }}</p>

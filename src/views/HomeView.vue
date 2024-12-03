@@ -6,7 +6,7 @@
         <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
         <hr class="bg-primary h-0.5">
       </CardHeader>
-      <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
+      <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 items-center gap-2">
         <!-- Weather Icon -->
 
 
@@ -23,24 +23,24 @@
         </div>
 
         <!-- Additional Weather Metrics -->
-        <section class="flex flex-row md:flex-col gap-4 justify-center">
+        <section class="flex flex-row md:flex-col gap-4 justify-center col-span-2">
 
           <!-- Humidity -->
           <WeatherMetrics logo="carbon:humidity-alt" label="Humidity" :value="city.info.humidity + '%'"
-            logocolor="text-blue-400" height="h-8" width="w-8" />
+            logocolor="text-blue-400" height="h-full" width="max-w-8 w-full" />
 
           <!-- Wind Speed -->
           <WeatherMetrics logo="meteor-icons:wind" label="Wind Speed" :value="city.info.windspeed + ' km/h'"
-            logocolor="text-gray-500" height="h-8" width="w-8" />
+            logocolor="text-gray-500" height="h-full" width="max-w-8 w-full" />
 
           <!-- Feels Like -->
           <WeatherMetrics logo="fluent:temperature-16-regular" label="Feels Like" :value="city.info.temperature + '°C'"
-            logocolor="text-orange-400" height="h-8" width="w-8" />
+            logocolor="text-orange-400" height="h-full" width="max-w-8 w-full" />
 
           <!-- High/Low Temps -->
           <WeatherMetrics logo="mingcute:high-temperature-line" label="High / Low"
-            :value="city.info.hightemp + '°C / ' + city.info.lowtemp + '°C'" logocolor="text-red-400" height="h-8"
-            width="w-8" />
+            :value="city.info.hightemp + '°C / ' + city.info.lowtemp + '°C'" logocolor="text-red-400" height="h-full"
+            width="max-w-8 w-full" />
 
         </section>
 
