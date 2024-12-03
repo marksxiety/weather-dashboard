@@ -13,6 +13,7 @@ export default {
         accent: '#F43F5E',     // Vibrant red (rain/storm)
         background: '#F9FAFB', // Light gray (background)
         dark: '#1F2937',       // Dark charcoal (text and accents)
+        separator: '#D3D3D3'
       },
     },
   },
