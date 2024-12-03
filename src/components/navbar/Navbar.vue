@@ -28,14 +28,13 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue';
-import { Icon } from '@iconify/vue';
-import NavbarCard from './NavbarCard.vue';
+import { ref, defineEmits } from 'vue'
+import { Icon } from '@iconify/vue'
+import NavbarCard from '@/components/navbar/NavbarCard.vue'
+const searchValue = ref('')
 
-const searchValue = ref('');
-
-const emit = defineEmits(['search-city']);
+const emit = defineEmits(['search-city'])
 const handleSearch = () => {
-    emit('search-city', searchValue.value);
-};
+    emit('search-city', searchValue.value)
+}
 </script>
