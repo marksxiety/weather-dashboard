@@ -15,8 +15,8 @@
         </section>
 
         <!-- Span to have a separation for icon and description -->
-        <div class="flex justify-center w-full h-full">
-          <span class="w-full md:w-0.5 lg:w-0.5 h-full bg-separator hidden sm:block"></span>
+        <div class="flex justify-center items-center w-full h-full">
+          <span class="w-full md:w-0.5 lg:w-0.5 h-[60%] bg-separator hidden sm:block"></span>
         </div>
         <!-- City temperature and weather description -->
         <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
