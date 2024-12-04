@@ -30,7 +30,7 @@
 <script setup>
 import { ref, defineEmits } from 'vue'
 import { Icon } from '@iconify/vue'
-import NavbarCard from '@/components/navbar/NavbarCard.vue'
+import NavbarCard from '@/components/Navbar/NavbarCard.vue'
 const searchValue = ref('')
 
 const emit = defineEmits(['search-city'])

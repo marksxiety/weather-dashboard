@@ -48,7 +48,7 @@
 
 <script setup>
 import { ref, computed, reactive, onMounted } from 'vue'
-import Navbar from '@/components/navbar/Navbar.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
 import Card from '@/components/Card/Card.vue'
 import CardHeader from '@/components/Card/CardHeader.vue'
 import CardContent from '@/components/Card/CardContent.vue'
