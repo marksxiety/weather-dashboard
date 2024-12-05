@@ -11,7 +11,6 @@
       <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
         <!-- Weather Icon -->
         <section class="flex flex-col gap-4 items-center">
-          <!-- <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-32 h-32 w-full" /> -->
           <img :src="currentWeatherImageIdentifier(city.info.weather)" alt="Weather Image" >
         </section>
 
@@ -57,13 +56,10 @@ import CardFooter from '@/components/Card/CardFooter.vue'
 import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
 import { Icon } from '@iconify/vue'
 import axiosConfig from '@/plugins'
-import { RouterLink } from 'vue-router'
 import cloudy from '@/assets/weather_logo/cloudy.png'
 import not_found from '@/assets/weather_logo/not_found.png'
 import drizzle from '@/assets/weather_logo/drizzle.png'
 import foggy from '@/assets/weather_logo/foggy.png'
-import overcast from '@/assets/weather_logo/overcast.png'
-import partially_cloudy from '@/assets/weather_logo/partially_cloudy.png'
 import rain from '@/assets/weather_logo/rain.png'
 import snow from '@/assets/weather_logo/snow.png'
 import sunny from '@/assets/weather_logo/sunny.png'
