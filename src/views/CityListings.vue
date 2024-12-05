@@ -11,7 +11,8 @@
       <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
         <!-- Weather Icon -->
         <section class="flex flex-col gap-4 items-center">
-          <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-32 h-32 w-full" />
+          <!-- <Icon :icon="mainLogoIdentifier(city.info.weather)" class="min-h-32 h-32 w-full" /> -->
+          <img :src="currentWeatherImageIdentifier(city.info.weather)" alt="Weather Image" >
         </section>
 
         <!-- Span to have a separation for icon and description -->
@@ -57,6 +58,18 @@ import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
 import { Icon } from '@iconify/vue'
 import axiosConfig from '@/plugins'
 import { RouterLink } from 'vue-router'
+import cloudy from '@/assets/weather_logo/cloudy.png'
+import not_found from '@/assets/weather_logo/not_found.png'
+import drizzle from '@/assets/weather_logo/drizzle.png'
+import foggy from '@/assets/weather_logo/foggy.png'
+import overcast from '@/assets/weather_logo/overcast.png'
+import partially_cloudy from '@/assets/weather_logo/partially_cloudy.png'
+import rain from '@/assets/weather_logo/rain.png'
+import snow from '@/assets/weather_logo/snow.png'
+import sunny from '@/assets/weather_logo/sunny.png'
+import thunderstorm from '@/assets/weather_logo/thunderstorm.png'
+import tornado from '@/assets/weather_logo/tornado.png'
+
 
 // API Key
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
@@ -121,21 +134,22 @@ const fetchOverallCityWeather = async () => {
   }
 }
 
+
 // Identify main weather icon
-const mainLogoIdentifier = (weather = '') => {
+const currentWeatherImageIdentifier = (weather = '') => {
   const weatherConditions = [
-    { main: 'thunderstorm', icon: 'ion:thunderstorm-outline' },
-    { main: 'drizzle', icon: 'carbon:rain-drizzle' },
-    { main: 'rain', icon: 'bi:cloud-rain' },
-    { main: 'snow', icon: 'hugeicons:snow' },
-    { main: 'clear', icon: 'fluent:weather-sunny-low-48-regular' },
-    { main: 'clouds', icon: 'bi:clouds' },
-    { main: 'mist', icon: 'tabler:mist' },
-    { main: 'fog', icon: 'carbon:fog' },
-    { main: 'tornado', icon: 'tabler:tornado' },
+    { main: 'thunderstorm', image: thunderstorm },
+    { main: 'drizzle', image: drizzle },
+    { main: 'rain', image: rain },
+    { main: 'snow', image: snow },
+    { main: 'clear', image: sunny },
+    { main: 'clouds', image: cloudy },
+    { main: 'mist', image: foggy },
+    { main: 'fog', image: foggy },
+    { main: 'tornado', image: tornado },
   ]
   const condition = weatherConditions.find((c) => c.main === weather.trim().toLowerCase())
-  return condition ? condition.icon : 'hugeicons:file-not-found'
+  return condition ? condition.image : not_found
 }
 
 // Fetch weather data on mount
