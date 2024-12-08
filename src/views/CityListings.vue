@@ -34,7 +34,7 @@
             logocolor="text-gray-500" height="h-full" width="max-w-8 w-full" />
         </div>
         <div class="flex flex-col gap-4">
-          <WeatherMetrics logo="fluent:temperature-16-regular" label="Feels Like" :value="city.info.temperature + '°C'"
+          <WeatherMetrics logo="fluent:temperature-16-regular" label="Feels Like" :value="city.info.feel + '°C'"
             logocolor="text-orange-400" height="h-full" width="max-w-8 w-full" />
           <WeatherMetrics logo="mingcute:high-temperature-line" label="High / Low"
             :value="city.info.hightemp + '°C / ' + city.info.lowtemp + '°C'" logocolor="text-red-400" height="h-full"
@@ -117,7 +117,8 @@ const fetchOverallCityWeather = async () => {
       city.info = {
         cityname: weatherInfo.name,
         description: weatherInfo.weather[0].description,
-        temperature: weatherInfo.main.feels_like,
+        temperature: weatherInfo.main.temp,
+        feel: weatherInfo.main.feels_like,
         humidity: weatherInfo.main.humidity,
         windspeed: weatherInfo.wind.speed,
         hightemp: weatherInfo.main.temp_max,
