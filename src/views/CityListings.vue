@@ -1,9 +1,10 @@
 <template>
   <Navbar @search-city="handleSearchCity" />
   <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
-    <Card v-for="city in filteredCities" :key="city.info.cityname" class="hover:cursor-grab shadow-lg hover:shadow-none">
+    <Card v-for="city in filteredCities" :key="city.info.cityname"
+      class="hover:cursor-grab shadow-lg hover:shadow-none">
       <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
-        <Icon icon="mdi:location" class="text-red-600 h-8 w-8"/>
+        <Icon icon="mdi:location" class="text-red-600 h-8 w-8" />
         <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
         <!-- <hr class="bg-primary h-0.5"> -->
       </CardHeader>
@@ -11,7 +12,7 @@
       <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
         <!-- Weather Icon -->
         <section class="flex flex-col gap-4 items-center">
-          <img :src="currentWeatherImageIdentifier(city.info.weather)" alt="Weather Image" >
+          <img :src="currentWeatherImageIdentifier(city.info.weather)" alt="Weather Image">
         </section>
 
         <!-- Span to have a separation for icon and description -->
@@ -65,7 +66,9 @@ import snow from '@/assets/weather_logo/snow.png'
 import sunny from '@/assets/weather_logo/sunny.png'
 import thunderstorm from '@/assets/weather_logo/thunderstorm.png'
 import tornado from '@/assets/weather_logo/tornado.png'
+import { useWeatherStore } from '@/stores/WeatherStore'
 
+const weatherStore = useWeatherStore()
 
 // API Key
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
@@ -98,14 +101,13 @@ const handleSearchCity = (value) => {
   searchValue.value = value
 }
 
-// Fetch weather for a single city
 const fetchCityWeather = async (country, city, apiKey) => {
   try {
-    const response = await axiosConfig.get(`/weather?q=${city},${country}&appid=${apiKey}&units=metric`)
-    return response.data
+    const response = await weatherStore.loadCityWeather(country, city, apiKey)
+    return response
   } catch (error) {
     console.error(`Error fetching weather for ${city}:`, error)
-    return null
+    return null; 
   }
 }
 
