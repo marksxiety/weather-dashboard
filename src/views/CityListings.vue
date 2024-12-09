@@ -48,15 +48,19 @@
 
 
 <script setup>
+// imported functions
 import { ref, computed, reactive, onMounted } from 'vue'
+import { useWeatherStore } from '@/stores/WeatherStore'
+
+// imported components
 import Navbar from '@/components/navbar/Navbar.vue'
 import Card from '@/components/Card/Card.vue'
 import CardHeader from '@/components/Card/CardHeader.vue'
 import CardContent from '@/components/Card/CardContent.vue'
 import CardFooter from '@/components/Card/CardFooter.vue'
 import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
-import { Icon } from '@iconify/vue'
-import axiosConfig from '@/plugins'
+
+// imported images for each weather scenarios
 import cloudy from '@/assets/weather_logo/cloudy.png'
 import not_found from '@/assets/weather_logo/not_found.png'
 import drizzle from '@/assets/weather_logo/drizzle.png'
@@ -66,7 +70,7 @@ import snow from '@/assets/weather_logo/snow.png'
 import sunny from '@/assets/weather_logo/sunny.png'
 import thunderstorm from '@/assets/weather_logo/thunderstorm.png'
 import tornado from '@/assets/weather_logo/tornado.png'
-import { useWeatherStore } from '@/stores/WeatherStore'
+
 
 const weatherStore = useWeatherStore()
 
