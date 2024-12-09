@@ -75,14 +75,14 @@ const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 
 // Reactive state
 const cities = reactive([
-  { country: 'PH', city: 'Manila' },
-  { country: 'PH', city: 'Batangas' },
-  { country: 'PH', city: 'Bohol' },
-  { country: 'PH', city: 'Rizal' },
-  { country: 'PH', city: 'Cebu' },
-  { country: 'PH', city: 'Quezon' },
-  { country: 'PH', city: 'San Jose' },
-  { country: 'PH', city: 'Calamba' }
+  { country: 'PH', city: 'Manila', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Batangas', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Bohol', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Rizal', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Cebu', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Quezon', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'San Jose', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
+  { country: 'PH', city: 'Calamba', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } }
 ])
 
 // Search input state
