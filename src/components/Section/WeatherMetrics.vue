@@ -56,7 +56,7 @@ const props = defineProps({
     type: String,
   },
   valueClass: {
-    default: 'text-sm font-semibold md:text-md lg:text-lg',
+    default: 'text-sm font-semibold 2xl:text-lg xl:text-md',
     type: String,
   },
 });
