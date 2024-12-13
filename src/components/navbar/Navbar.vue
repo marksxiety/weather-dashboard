@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue'
+import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import NavbarCard from '@/components/Navbar/NavbarCard.vue'
 const searchValue = ref('')
