@@ -26,7 +26,7 @@
         </section>
       </CardContent>
 
-      <CardFooter class="grid grid-cols-2 gap-4">
+      <CardFooter class="grid grid-cols-2 gap-12">
         <!-- Weather Metrics -->
         <div class="flex flex-col gap-4">
           <WeatherMetrics label="Humidity" :value="city.info.humidity + '%'" :logo="humidity" height="h-full"

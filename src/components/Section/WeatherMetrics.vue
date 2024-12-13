@@ -1,5 +1,6 @@
 <template>
-  <div 
+  <div class="grid place-content-center">
+    <div 
     class="flex gap-x-4 w-full" 
     :class="['flex-row', justifyContent]"
   >
@@ -18,6 +19,8 @@
       <img :src="logo" alt="Weather Information" :class="[height, width]" />
     </template>
   </div>
+  </div>
+ 
 </template>
 
 
