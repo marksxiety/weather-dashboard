@@ -4,7 +4,7 @@
     <Card v-for="city in filteredCities" :key="city.info.cityname"
       class="hover:cursor-grab shadow-lg hover:shadow-none">
       <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
-        <!-- <Icon icon="mdi:location" class="text-red-600 h-8 w-8" /> -->
+        <img :src="location" alt="location" class="max-w-8 w-full h-full">
         <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
         <!-- <hr class="bg-primary h-0.5"> -->
       </CardHeader>
@@ -73,6 +73,7 @@ import windy from '@/assets/weather_logo/windy.png'
 import humidity from '@/assets/weather_logo/humidity.png'
 import temperature from '@/assets/weather_logo/temperature.png'
 import pressure from '@/assets/weather_logo/pressure.png'
+import location from '@/assets/weather_logo/location.png'
 
 const weatherStore = useWeatherStore()
 
