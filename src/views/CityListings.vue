@@ -3,44 +3,46 @@
   <div class="p-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in filteredCities" :key="city.info.cityname"
       class="hover:cursor-grab shadow-lg hover:shadow-none">
-      <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
-        <img :src="location" alt="location" class="max-w-8 w-full h-full">
-        <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
-        <!-- <hr class="bg-primary h-0.5"> -->
-      </CardHeader>
+      <router-link :to="`/city/${city.info.cityparameter}`">
+        <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
+          <img :src="location" alt="location" class="max-w-8 w-full h-full">
+          <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
+          <!-- <hr class="bg-primary h-0.5"> -->
+        </CardHeader>
 
-      <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
-        <!-- Weather Icon -->
-        <section class="flex flex-col gap-4 items-center">
-          <img :src="currentWeatherImageIdentifier(city.info.weather)" alt="Weather Image">
-        </section>
+        <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
+          <!-- Weather Icon -->
+          <section class="flex flex-col gap-4 items-center">
+            <img :src="currentWeatherImageIdentifier(city.info.weather)" alt="Weather Image">
+          </section>
 
-        <!-- Span to have a separation for icon and description -->
-        <div class="flex justify-center items-center w-full h-full">
-          <span class="w-full md:w-0.5 lg:w-0.5 h-[60%] bg-separator hidden sm:block"></span>
-        </div>
-        <!-- City temperature and weather description -->
-        <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
-          <p class="text-2xl mt-1 text-wrap font-semibold antialiased">{{ city.info.temperature }}°C</p>
-          <p class="text-sm antialiased italic">{{ city.info.description }}</p>
-        </section>
-      </CardContent>
+          <!-- Span to have a separation for icon and description -->
+          <div class="flex justify-center items-center w-full h-full">
+            <span class="w-full md:w-0.5 lg:w-0.5 h-[60%] bg-separator hidden sm:block"></span>
+          </div>
+          <!-- City temperature and weather description -->
+          <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
+            <p class="text-2xl mt-1 text-wrap font-semibold antialiased">{{ city.info.temperature }}°C</p>
+            <p class="text-sm antialiased italic">{{ city.info.description }}</p>
+          </section>
+        </CardContent>
 
-      <CardFooter class="grid grid-cols-2 gap-12">
-        <!-- Weather Metrics -->
-        <div class="flex flex-col gap-4">
-          <WeatherMetrics label="Humidity" :value="city.info.humidity + '%'" :logo="humidity" height="h-full"
-            width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false"/>
-          <WeatherMetrics label="Wind Speed" :value="city.info.windspeed + ' km/h'" :logo="windy" height="h-full"
-            width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false"/>
-        </div>
-        <div class="flex flex-col gap-4">
-          <WeatherMetrics label="Feels Like" :value="city.info.feel + '°C'" :logo="temperature" height="h-full"
-            width="max-w-8 w-full" justifyContent="justify-start" />
-          <WeatherMetrics label="Pressure" :value="city.info.pressure" :logo="pressure" height="h-full"
-            width="max-w-8 w-full" justifyContent="justify-start" />
-        </div>
-      </CardFooter>
+        <CardFooter class="grid grid-cols-2 gap-12">
+          <!-- Weather Metrics -->
+          <div class="flex flex-col gap-4">
+            <WeatherMetrics label="Humidity" :value="city.info.humidity + '%'" :logo="humidity" height="h-full"
+              width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
+            <WeatherMetrics label="Wind Speed" :value="city.info.windspeed + ' km/h'" :logo="windy" height="h-full"
+              width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
+          </div>
+          <div class="flex flex-col gap-4">
+            <WeatherMetrics label="Feels Like" :value="city.info.feel + '°C'" :logo="temperature" height="h-full"
+              width="max-w-8 w-full" justifyContent="justify-start" />
+            <WeatherMetrics label="Pressure" :value="city.info.pressure" :logo="pressure" height="h-full"
+              width="max-w-8 w-full" justifyContent="justify-start" />
+          </div>
+        </CardFooter>
+      </router-link>
     </Card>
   </div>
 </template>
