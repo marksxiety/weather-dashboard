@@ -1,4 +1,5 @@
 <template>
+  <Navbar/>
     <div class="p-8">
       <h1 class="text-3xl font-bold mb-4">City Info: {{ city || 'Not Found' }}</h1>
     </div>
@@ -6,7 +7,7 @@
   
   <script setup>
   import { useRoute } from 'vue-router';
-  import { useWeatherStore } from '@/stores/weatherStore';
+  import Navbar from '@/components/Navbar/Navbar.vue';
   
   const route = useRoute();
   
