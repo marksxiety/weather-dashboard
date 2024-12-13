@@ -37,8 +37,8 @@
         <div class="flex flex-col gap-4">
           <WeatherMetrics logo="fluent:temperature-16-regular" label="Feels Like" :value="city.info.feel + '°C'"
             logocolor="text-orange-400" height="h-full" width="max-w-8 w-full" />
-          <WeatherMetrics logo="mingcute:high-temperature-line" label="High / Low"
-            :value="city.info.hightemp + '°C / ' + city.info.lowtemp + '°C'" logocolor="text-red-400" height="h-full"
+          <WeatherMetrics logo="mingcute:high-temperature-line" label="Pressure"
+            :value="city.info.pressure" logocolor="text-red-400" height="h-full"
             width="max-w-8 w-full" />
         </div>
       </CardFooter>
@@ -79,14 +79,14 @@ const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 
 // Reactive state
 const cities = reactive([
-  { country: 'PH', city: 'Manila', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
-  { country: 'PH', city: 'Batangas', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
-  { country: 'PH', city: 'Bohol', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
-  { country: 'PH', city: 'Rizal', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
-  { country: 'PH', city: 'Cebu', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
-  { country: 'PH', city: 'Quezon', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
-  { country: 'PH', city: 'San Jose', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } },
-  { country: 'PH', city: 'Calamba', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', hightemp: 'N/A', lowtemp: 'N/A' } }
+  { country: 'PH', city: 'Manila', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Batangas', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Bohol', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Rizal', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Cebu', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Quezon', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'San Jose', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Calamba', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } }
 ])
 
 // Search input state
@@ -127,11 +127,10 @@ const fetchOverallCityWeather = async () => {
         feel: weatherInfo.main.feels_like,
         humidity: weatherInfo.main.humidity,
         windspeed: weatherInfo.wind.speed,
-        hightemp: weatherInfo.main.temp_max,
-        lowtemp: weatherInfo.main.temp_min,
         weather: weatherInfo.weather[0].main,
         cityparameter: city.city,
-        countryparamter: city.country
+        countryparamter: city.country,
+        pressure: weatherInfo.main.pressure
       }
     }
   }
