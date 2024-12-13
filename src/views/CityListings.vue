@@ -22,7 +22,7 @@
           </div>
           <!-- City temperature and weather description -->
           <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
-            <p class="text-2xl mt-1 text-wrap font-semibold antialiased">{{ city.info.temperature }}°C</p>
+            <p class="text-3xl mt-1 text-wrap font-semibold antialiased">{{ city.info.temperature }}°C</p>
             <p class="text-sm antialiased italic">{{ city.info.description }}</p>
           </section>
         </CardContent>

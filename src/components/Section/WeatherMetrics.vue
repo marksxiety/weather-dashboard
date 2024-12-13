@@ -68,3 +68,9 @@ const props = defineProps({
 });
 
 </script>
+
+<style scoped>
+p{
+  font-size: small;
+}
+</style>
