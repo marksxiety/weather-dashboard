@@ -4,7 +4,7 @@
     <Card v-for="city in filteredCities" :key="city.info.cityname"
       class="hover:cursor-grab shadow-lg hover:shadow-none">
       <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
-        <Icon icon="mdi:location" class="text-red-600 h-8 w-8" />
+        <!-- <Icon icon="mdi:location" class="text-red-600 h-8 w-8" /> -->
         <p class="text-lg font-semibold">{{ city.info.cityname }}</p>
         <!-- <hr class="bg-primary h-0.5"> -->
       </CardHeader>
@@ -29,17 +29,16 @@
       <CardFooter class="grid grid-cols-2 gap-4">
         <!-- Weather Metrics -->
         <div class="flex flex-col gap-4">
-          <WeatherMetrics logo="carbon:humidity-alt" label="Humidity" :value="city.info.humidity + '%'"
-            logocolor="text-blue-400" height="h-full" width="max-w-8 w-full" />
-          <WeatherMetrics logo="meteor-icons:wind" label="Wind Speed" :value="city.info.windspeed + ' km/h'"
-            logocolor="text-gray-500" height="h-full" width="max-w-8 w-full" />
+          <WeatherMetrics label="Humidity" :value="city.info.humidity + '%'" :logo="humidity" height="h-full"
+            width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false"/>
+          <WeatherMetrics label="Wind Speed" :value="city.info.windspeed + ' km/h'" :logo="windy" height="h-full"
+            width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false"/>
         </div>
         <div class="flex flex-col gap-4">
-          <WeatherMetrics logo="fluent:temperature-16-regular" label="Feels Like" :value="city.info.feel + '°C'"
-            logocolor="text-orange-400" height="h-full" width="max-w-8 w-full" />
-          <WeatherMetrics logo="mingcute:high-temperature-line" label="Pressure"
-            :value="city.info.pressure" logocolor="text-red-400" height="h-full"
-            width="max-w-8 w-full" />
+          <WeatherMetrics label="Feels Like" :value="city.info.feel + '°C'" :logo="temperature" height="h-full"
+            width="max-w-8 w-full" justifyContent="justify-start" />
+          <WeatherMetrics label="Pressure" :value="city.info.pressure" :logo="pressure" height="h-full"
+            width="max-w-8 w-full" justifyContent="justify-start" />
         </div>
       </CardFooter>
     </Card>
@@ -70,7 +69,10 @@ import snow from '@/assets/weather_logo/snow.png'
 import sunny from '@/assets/weather_logo/sunny.png'
 import thunderstorm from '@/assets/weather_logo/thunderstorm.png'
 import tornado from '@/assets/weather_logo/tornado.png'
-
+import windy from '@/assets/weather_logo/windy.png'
+import humidity from '@/assets/weather_logo/humidity.png'
+import temperature from '@/assets/weather_logo/temperature.png'
+import pressure from '@/assets/weather_logo/pressure.png'
 
 const weatherStore = useWeatherStore()
 
@@ -79,14 +81,14 @@ const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 
 // Reactive state
 const cities = reactive([
-  { country: 'PH', city: 'Manila', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
-  { country: 'PH', city: 'Batangas', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
-  { country: 'PH', city: 'Bohol', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
-  { country: 'PH', city: 'Rizal', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
-  { country: 'PH', city: 'Cebu', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
-  { country: 'PH', city: 'Quezon', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
-  { country: 'PH', city: 'San Jose', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } },
-  { country: 'PH', city: 'Calamba', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A',  windspeed: 'N/A', pressure: 'N/A' } }
+  { country: 'PH', city: 'Manila', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A', windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Batangas', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A', windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Bohol', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A', windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Rizal', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A', windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Cebu', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A', windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Quezon', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A', windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'San Jose', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A', windspeed: 'N/A', pressure: 'N/A' } },
+  { country: 'PH', city: 'Calamba', info: { cityname: 'Loading...', description: 'Loading...', temperature: 'N/A', humidity: 'N/A', feel: 'N/A', windspeed: 'N/A', pressure: 'N/A' } }
 ])
 
 // Search input state
@@ -111,7 +113,7 @@ const fetchCityWeather = async (country, city, apiKey) => {
     return response
   } catch (error) {
     console.error(`Error fetching weather for ${city}:`, error)
-    return null; 
+    return null;
   }
 }
 
