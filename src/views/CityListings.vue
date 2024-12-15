@@ -53,18 +53,18 @@
   <div v-else>
     <div
       class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
-      <Card v-for="city in filteredCities" :key="city.city ?? ''" class="animate-pulse shadow-lg">
+      <Card v-for="city in filteredCities" :key="city.city ?? ''" class="animate-pulse shadow-lg" bordercolor='slate-400'>
         <CardHeader class="pr-2 pl-2 flex flex-row gap-4">
-          <div class="rounded-lg bg-slate-700 h-6 w-6"></div>
+          <div class="rounded-lg bg-slate-400 h-6 w-6"></div>
           <div class="flex items-center w-full">
-            <div class="h-3 w-[50%] bg-slate-700 rounded"></div>
+            <div class="h-3 w-[50%] bg-slate-400 rounded"></div>
           </div>
         </CardHeader>
 
         <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2 mt-4">
           <!-- Weather Icon -->
           <section class="flex items-center w-full h-12">
-            <div class="h-full w-full bg-slate-700 rounded"></div>
+            <div class="h-full w-full bg-slate-400 rounded"></div>
           </section>
 
           <!-- Span to have a separation for icon and description -->
@@ -73,8 +73,8 @@
           </div>
           <!-- City temperature and weather description -->
           <section class="flex flex-row md:flex-col gap-4 justify-center text-center h-12">
-            <div class="h-full w-full bg-slate-700 rounded"></div>
-            <div class="h-full w-full bg-slate-700 rounded"></div>
+            <div class="h-full w-full bg-slate-400 rounded"></div>
+            <div class="h-full w-full bg-slate-400 rounded"></div>
           </section>
         </CardContent>
 
@@ -82,22 +82,22 @@
           <!-- Weather Metrics -->
           <div class="flex flex-col gap-4">
             <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
-              <div class="h-[50%] w-full bg-slate-700 rounded col-span-2"></div>
-              <div class="h-full w-full bg-slate-700 rounded"></div>
+              <div class="h-[50%] w-full bg-slate-400 rounded col-span-2"></div>
+              <div class="h-full w-full bg-slate-400 rounded"></div>
             </section>
             <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
-              <div class="h-[50%] w-full bg-slate-700 rounded col-span-2"></div>
-              <div class="h-full w-full bg-slate-700 rounded"></div>
+              <div class="h-[50%] w-full bg-slate-400 rounded col-span-2"></div>
+              <div class="h-full w-full bg-slate-400 rounded"></div>
             </section>
           </div>
           <div class="flex flex-col gap-4">
             <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
-              <div class="h-full w-full bg-slate-700 rounded"></div>
-              <div class="h-[50%] w-full bg-slate-700 rounded col-span-2"></div>
+              <div class="h-full w-full bg-slate-400 rounded"></div>
+              <div class="h-[50%] w-full bg-slate-400 rounded col-span-2"></div>
             </section>
             <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
-              <div class="h-full w-full bg-slate-700 rounded"></div>
-              <div class="h-[50%] w-full bg-slate-700 rounded col-span-2"></div>
+              <div class="h-full w-full bg-slate-400 rounded"></div>
+              <div class="h-[50%] w-full bg-slate-400 rounded col-span-2"></div>
             </section>
           </div>
         </CardFooter>
@@ -220,9 +220,9 @@ const currentWeatherImageIdentifier = (weather = '') => {
 
 // Fetch weather info on mount
 onMounted(async () => {
-  // let processedCities = await fetchOverallCityWeather()
-  // if (processedCities) {
-  //   isCitiesLoaded.value = true
-  // }
+  let processedCities = await fetchOverallCityWeather()
+  if (processedCities) {
+    isCitiesLoaded.value = true
+  }
 })
 </script>
