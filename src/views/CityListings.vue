@@ -2,18 +2,19 @@
   <Navbar @search-city="handleSearchCity" />
   <div
     class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
-    <Card v-for="city in filteredCities" :key="city.info.name" class="hover:cursor-grab shadow-lg hover:shadow-none">
-      <router-link :to="`/city/${city.info.name}`">
+    <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
+      class="hover:cursor-grab shadow-lg hover:shadow-none">
+      <router-link :to="`/city/${city.info.name ?? ''}`">
         <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
-          <img :src="location" alt="location" class="max-w-8 w-full h-full">
-          <p class="text-lg font-semibold">{{ city.info.name }}</p>
+          <img :src="location ?? ''" alt="location" class="max-w-8 w-full h-full">
+          <p class="text-lg font-semibold">{{ city.info.name ?? '' }}</p>
           <!-- <hr class="bg-primary h-0.5"> -->
         </CardHeader>
 
         <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
           <!-- Weather Icon -->
           <section class="flex flex-col gap-4 items-center">
-            <img :src="currentWeatherImageIdentifier('')" alt="Weather Image">
+            <img :src="currentWeatherImageIdentifier('') ?? ''" alt="Weather Image">
           </section>
 
           <!-- Span to have a separation for icon and description -->
@@ -23,23 +24,23 @@
           <!-- City temperature and weather description -->
           <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
             <p class="text-3xl 2xl:text-xl xl:text-lg mt-1 text-wrap font-semibold antialiased">{{ city.info.main.temp
-              }}°C</p>
-            <p class="text-sm antialiased italic">{{ city.info.weather[0].description }}</p>
+              ?? '' }}°C</p>
+            <p class="text-sm antialiased italic">{{ city.info.weather[0]?.description ?? '' }}</p>
           </section>
         </CardContent>
 
         <CardFooter class="grid grid-cols-2 gap-12">
           <!-- Weather Metrics -->
           <div class="flex flex-col gap-4">
-            <WeatherMetrics label="Humidity" :value="city.info.main.humidity + '%'" :logo="humidity" height="h-full"
-              width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
-            <WeatherMetrics label="Wind Speed" :value="city.info.wind.speed + ' km/h'" :logo="windy" height="h-full"
-              width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
+            <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'" :logo="humidity"
+              height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
+            <WeatherMetrics label="Wind Speed" :value="(city.info.wind.speed ?? '') + ' km/h'" :logo="windy"
+              height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
           </div>
           <div class="flex flex-col gap-4">
-            <WeatherMetrics label="Feels Like" :value="city.info.main.feels_like + '°C'" :logo="temperature"
+            <WeatherMetrics label="Feels Like" :value="(city.info.main.feels_like ?? '') + '°C'" :logo="temperature"
               height="h-full" width="max-w-8 w-full" justifyContent="justify-start" />
-            <WeatherMetrics label="Pressure" :value="city.info.main.pressure" :logo="pressure" height="h-full"
+            <WeatherMetrics label="Pressure" :value="city.info.main.pressure ?? ''" :logo="pressure" height="h-full"
               width="max-w-8 w-full" justifyContent="justify-start" />
           </div>
         </CardFooter>
@@ -83,146 +84,17 @@ const weatherStore = useWeatherStore()
 // API Key
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 
-// Reactive state
+// Reactive state of cities 
+
 const cities = reactive([
-  {
-    country: 'PH',
-    city: 'Manila',
-    info: {
-      name: 'Loading...',
-      weather: [
-        {
-          description: 'Loading...',
-          temp: 'N/A',
-          humidity: 'N/A',
-          pressure: 'N/A',
-        },
-      ],
-      feel: 'N/A',
-      wind: {
-        speed: 'N/A',
-      },
-    },
-  },
-  {
-    country: 'PH',
-    city: 'Batangas',
-    info: {
-      name: 'Loading...',
-      weather: [
-        {
-          description: 'Loading...',
-          temp: 'N/A',
-          humidity: 'N/A',
-          pressure: 'N/A',
-        },
-      ],
-      feel: 'N/A',
-      wind: {
-        speed: 'N/A',
-      },
-    },
-  },
-  {
-    country: 'PH',
-    city: 'Bohol',
-    info: {
-      name: 'Loading...',
-      weather: [
-        {
-          description: 'Loading...',
-          temp: 'N/A',
-          humidity: 'N/A',
-          pressure: 'N/A',
-        },
-      ],
-      feel: 'N/A',
-      wind: {
-        speed: 'N/A',
-      },
-    },
-  },
-  {
-    country: 'PH',
-    city: 'Rizal',
-    info: {
-      name: 'Loading...',
-      weather: [
-        {
-          description: 'Loading...',
-          temp: 'N/A',
-          humidity: 'N/A',
-          pressure: 'N/A',
-        },
-      ],
-      feel: 'N/A',
-      wind: {
-        speed: 'N/A',
-      },
-    },
-  },
-  {
-    country: 'PH',
-    city: 'Cebu',
-    info: {
-      name: 'Loading...',
-      weather: [
-        {
-          description: 'Loading...',
-          temp: 'N/A',
-          humidity: 'N/A',
-          pressure: 'N/A',
-        },
-      ],
-      feel: 'N/A',
-      wind: {
-        speed: 'N/A',
-      },
-    },
-  },
-  {
-    country: 'PH',
-    city: 'Quezon',
-    info: {
-      name: 'Loading...',
-      weather: [
-        {
-          description: 'Loading...',
-          temp: 'N/A',
-          humidity: 'N/A',
-          pressure: 'N/A',
-        },
-      ],
-      feel: 'N/A',
-      wind: {
-        speed: 'N/A',
-      },
-    },
-  },
-  {
-    country: 'PH',
-    city: 'San Jose',
-    info: {
-      name: 'Loading...',
-      weather: [
-        {
-          description: 'Loading...',
-          temp: 'N/A',
-          humidity: 'N/A',
-          pressure: 'N/A',
-        },
-      ],
-      feel: 'N/A',
-      wind: {
-        speed: 'N/A',
-      },
-    },
-  },
-  {
-    country: 'PH',
-    city: 'Calamba',
-    info: {},
-  },
+  { country: 'PH', city: 'Manila', info: {} },
+  { country: 'PH', city: 'Batangas', info: {} },
+  { country: 'PH', city: 'Bohol', info: {} },
+  { country: 'PH', city: 'Rizal', info: {} },
+  { country: 'PH', city: 'Cebu', info: {} },
+  { country: 'PH', city: 'Quezon', info: {} },
+  { country: 'PH', city: 'San Jose', info: {} },
+  { country: 'PH', city: 'Calamba', info: {} },
 ]);
 
 
