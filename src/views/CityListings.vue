@@ -1,6 +1,7 @@
 <template>
   <Navbar @search-city="handleSearchCity" />
-  <div
+  <div v-if="isCitiesLoaded">
+    <div
     class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
     <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
       class="hover:cursor-grab shadow-lg hover:shadow-none">
@@ -46,7 +47,13 @@
         </CardFooter>
       </router-link>
     </Card>
+  </div>  
   </div>
+
+  <div v-else>
+    loading
+  </div>
+  
 </template>
 
 
@@ -79,6 +86,7 @@ import temperature from '@/assets/weather_logo/temperature.png'
 import pressure from '@/assets/weather_logo/pressure.png'
 import location from '@/assets/weather_logo/location.png'
 
+const isCitiesLoaded = ref(false)
 const weatherStore = useWeatherStore()
 
 // API Key
@@ -87,14 +95,14 @@ const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 // Reactive state of cities 
 
 const cities = reactive([
-  { country: 'PH', city: 'Manila', info: {} },
-  { country: 'PH', city: 'Batangas', info: {} },
-  { country: 'PH', city: 'Bohol', info: {} },
-  { country: 'PH', city: 'Rizal', info: {} },
-  { country: 'PH', city: 'Cebu', info: {} },
-  { country: 'PH', city: 'Quezon', info: {} },
-  { country: 'PH', city: 'San Jose', info: {} },
-  { country: 'PH', city: 'Calamba', info: {} },
+  { country: 'PH', city: 'Manila' },
+  { country: 'PH', city: 'Batangas' },
+  { country: 'PH', city: 'Bohol' },
+  { country: 'PH', city: 'Rizal' },
+  { country: 'PH', city: 'Cebu' },
+  { country: 'PH', city: 'Quezon' },
+  { country: 'PH', city: 'San Jose' },
+  { country: 'PH', city: 'Calamba' },
 ]);
 
 
@@ -161,7 +169,10 @@ const currentWeatherImageIdentifier = (weather = '') => {
 
 // Fetch weather info on mount
 onMounted(async () => {
-  await fetchOverallCityWeather()
-  console.log(cities)
+  let processedCities = await fetchOverallCityWeather()
+  
+  if (processedCities) {
+    isCitiesLoaded.value = true
+  }
 })
 </script>
