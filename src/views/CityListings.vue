@@ -122,7 +122,10 @@ const fetchCityWeather = async (country, city, apiKey) => {
 
 // Fetch weather for all cities
 const fetchOverallCityWeather = async () => {
-  for (const city of cities) {
+  let fetchedCities = true
+
+  for (let index = 0; index < cities.length; index++) {
+    const city = cities[index]
     const weatherInfo = await fetchCityWeather(city.country, city.city, apiKey)
     if (weatherInfo) {
       city.info = {
@@ -137,8 +140,12 @@ const fetchOverallCityWeather = async () => {
         countryparamter: city.country,
         pressure: weatherInfo.main.pressure
       }
+    } else {
+      cities.splice(index)
+      fetchedCities = false
     }
   }
+  return fetchedCities
 }
 
 
