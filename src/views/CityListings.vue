@@ -2,58 +2,77 @@
   <Navbar @search-city="handleSearchCity" />
   <div v-if="isCitiesLoaded">
     <div
-    class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
-    <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
-      class="hover:cursor-grab shadow-lg hover:shadow-none">
-      <router-link :to="`/city/${city.info.name ?? ''}`">
-        <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
-          <img :src="location ?? ''" alt="location" class="max-w-8 w-full h-full">
-          <p class="text-lg font-semibold">{{ city.info.name ?? '' }}</p>
-          <!-- <hr class="bg-primary h-0.5"> -->
-        </CardHeader>
+      class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
+      <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
+        class="hover:cursor-grab shadow-lg hover:shadow-none">
+        <router-link :to="`/city/${city.info.name ?? ''}`">
+          <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
+            <img :src="location ?? ''" alt="location" class="max-w-8 w-full h-full">
+            <p class="text-lg font-semibold">{{ city.info.name ?? '' }}</p>
+            <!-- <hr class="bg-primary h-0.5"> -->
+          </CardHeader>
 
-        <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
-          <!-- Weather Icon -->
-          <section class="flex flex-col gap-4 items-center">
-            <img :src="currentWeatherImageIdentifier('') ?? ''" alt="Weather Image">
-          </section>
+          <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
+            <!-- Weather Icon -->
+            <section class="flex flex-col gap-4 items-center">
+              <img :src="currentWeatherImageIdentifier('') ?? ''" alt="Weather Image">
+            </section>
 
-          <!-- Span to have a separation for icon and description -->
-          <div class="flex justify-center items-center w-full h-full">
-            <span class="w-full md:w-0.5 lg:w-0.5 h-[60%] bg-separator hidden sm:block"></span>
-          </div>
-          <!-- City temperature and weather description -->
-          <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
-            <p class="text-3xl 2xl:text-xl xl:text-lg mt-1 text-wrap font-semibold antialiased">{{ city.info.main.temp
-              ?? '' }}°C</p>
-            <p class="text-sm antialiased italic">{{ city.info.weather[0]?.description ?? '' }}</p>
-          </section>
-        </CardContent>
+            <!-- Span to have a separation for icon and description -->
+            <div class="flex justify-center items-center w-full h-full">
+              <span class="w-full md:w-0.5 lg:w-0.5 h-[60%] bg-separator hidden sm:block"></span>
+            </div>
+            <!-- City temperature and weather description -->
+            <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
+              <p class="text-3xl 2xl:text-xl xl:text-lg mt-1 text-wrap font-semibold antialiased">{{ city.info.main.temp
+                ?? '' }}°C</p>
+              <p class="text-sm antialiased italic">{{ city.info.weather[0]?.description ?? '' }}</p>
+            </section>
+          </CardContent>
 
-        <CardFooter class="grid grid-cols-2 gap-12">
-          <!-- Weather Metrics -->
-          <div class="flex flex-col gap-4">
-            <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'" :logo="humidity"
-              height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
-            <WeatherMetrics label="Wind Speed" :value="(city.info.wind.speed ?? '') + ' km/h'" :logo="windy"
-              height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
-          </div>
-          <div class="flex flex-col gap-4">
-            <WeatherMetrics label="Feels Like" :value="(city.info.main.feels_like ?? '') + '°C'" :logo="temperature"
-              height="h-full" width="max-w-8 w-full" justifyContent="justify-start" />
-            <WeatherMetrics label="Pressure" :value="city.info.main.pressure ?? ''" :logo="pressure" height="h-full"
-              width="max-w-8 w-full" justifyContent="justify-start" />
-          </div>
-        </CardFooter>
-      </router-link>
-    </Card>
-  </div>  
+          <CardFooter class="grid grid-cols-2 gap-12">
+            <!-- Weather Metrics -->
+            <div class="flex flex-col gap-4">
+              <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'" :logo="humidity"
+                height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
+              <WeatherMetrics label="Wind Speed" :value="(city.info.wind.speed ?? '') + ' km/h'" :logo="windy"
+                height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
+            </div>
+            <div class="flex flex-col gap-4">
+              <WeatherMetrics label="Feels Like" :value="(city.info.main.feels_like ?? '') + '°C'" :logo="temperature"
+                height="h-full" width="max-w-8 w-full" justifyContent="justify-start" />
+              <WeatherMetrics label="Pressure" :value="city.info.main.pressure ?? ''" :logo="pressure" height="h-full"
+                width="max-w-8 w-full" justifyContent="justify-start" />
+            </div>
+          </CardFooter>
+        </router-link>
+      </Card>
+    </div>
   </div>
 
   <div v-else>
-    loading
+    <div
+      class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
+      <Card v-for="city in filteredCities" :key="city.city ?? ''" class="hover:cursor-grab shadow-lg hover:shadow-none">
+        <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+          <div class="animate-pulse flex space-x-4">
+            <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+            <div class="flex-1 space-y-6 py-1">
+              <div class="h-2 bg-slate-700 rounded"></div>
+              <div class="space-y-3">
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                  <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+                </div>
+                <div class="h-2 bg-slate-700 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
   </div>
-  
+
 </template>
 
 
@@ -113,7 +132,7 @@ const searchValue = ref('')
 const filteredCities = computed(() => {
   if (!searchValue.value.trim()) return cities // Show all cities if no search input
   return cities.filter((city) =>
-    city.info.name.toLowerCase().includes(searchValue.value.toLowerCase())
+    city.city.toLowerCase().includes(searchValue.value.toLowerCase())
   )
 })
 
@@ -169,10 +188,9 @@ const currentWeatherImageIdentifier = (weather = '') => {
 
 // Fetch weather info on mount
 onMounted(async () => {
-  let processedCities = await fetchOverallCityWeather()
-  
-  if (processedCities) {
-    isCitiesLoaded.value = true
-  }
+  // let processedCities = await fetchOverallCityWeather()
+  // if (processedCities) {
+  //   isCitiesLoaded.value = true
+  // }
 })
 </script>
