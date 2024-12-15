@@ -53,22 +53,54 @@
   <div v-else>
     <div
       class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
-      <Card v-for="city in filteredCities" :key="city.city ?? ''" class="hover:cursor-grab shadow-lg hover:shadow-none">
-        <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-          <div class="animate-pulse flex space-x-4">
-            <div class="rounded-full bg-slate-700 h-10 w-10"></div>
-            <div class="flex-1 space-y-6 py-1">
-              <div class="h-2 bg-slate-700 rounded"></div>
-              <div class="space-y-3">
-                <div class="grid grid-cols-3 gap-4">
-                  <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-                  <div class="h-2 bg-slate-700 rounded col-span-1"></div>
-                </div>
-                <div class="h-2 bg-slate-700 rounded"></div>
-              </div>
-            </div>
+      <Card v-for="city in filteredCities" :key="city.city ?? ''" class="animate-pulse shadow-lg">
+        <CardHeader class="pr-2 pl-2 flex flex-row gap-4">
+          <div class="rounded-lg bg-slate-700 h-6 w-6"></div>
+          <div class="flex items-center w-full">
+            <div class="h-3 w-[50%] bg-slate-700 rounded"></div>
           </div>
-        </div>
+        </CardHeader>
+
+        <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2 mt-4">
+          <!-- Weather Icon -->
+          <section class="flex items-center w-full h-12">
+            <div class="h-full w-full bg-slate-700 rounded"></div>
+          </section>
+
+          <!-- Span to have a separation for icon and description -->
+          <div class="flex justify-center items-center w-full h-full">
+            <span class="w-full md:w-0.5 lg:w-0.5 h-[60%] bg-separator hidden sm:block"></span>
+          </div>
+          <!-- City temperature and weather description -->
+          <section class="flex flex-row md:flex-col gap-4 justify-center text-center h-12">
+            <div class="h-full w-full bg-slate-700 rounded"></div>
+            <div class="h-full w-full bg-slate-700 rounded"></div>
+          </section>
+        </CardContent>
+
+        <CardFooter class="grid grid-cols-2 gap-12 mt-4">
+          <!-- Weather Metrics -->
+          <div class="flex flex-col gap-4">
+            <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
+              <div class="h-[50%] w-full bg-slate-700 rounded col-span-2"></div>
+              <div class="h-full w-full bg-slate-700 rounded"></div>
+            </section>
+            <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
+              <div class="h-[50%] w-full bg-slate-700 rounded col-span-2"></div>
+              <div class="h-full w-full bg-slate-700 rounded"></div>
+            </section>
+          </div>
+          <div class="flex flex-col gap-4">
+            <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
+              <div class="h-full w-full bg-slate-700 rounded"></div>
+              <div class="h-[50%] w-full bg-slate-700 rounded col-span-2"></div>
+            </section>
+            <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
+              <div class="h-full w-full bg-slate-700 rounded"></div>
+              <div class="h-[50%] w-full bg-slate-700 rounded col-span-2"></div>
+            </section>
+          </div>
+        </CardFooter>
       </Card>
     </div>
   </div>
