@@ -7,7 +7,7 @@
         class="hover:cursor-pointer shadow-lg hover:shadow-none" bordercolor='primary'>
         <router-link :to="{ path: `/city/${city.info.name.toLowerCase() ?? ''}` }">
           <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
-            <img :src="location ?? ''" alt="location" class="max-w-8 w-full h-full">
+            <img :src="WeatherImageIdentifier('location') ?? ''" alt="location" class="max-w-8 w-full h-full">
             <p class="text-lg font-semibold">{{ city.info.name ?? '' }}</p>
             <!-- <hr class="bg-primary h-0.5"> -->
           </CardHeader>
@@ -15,7 +15,7 @@
           <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
             <!-- Weather Icon -->
             <section class="flex flex-col gap-4 items-center">
-              <img :src="currentWeatherImageIdentifier(city.info.weather[0]?.main ?? '') ?? ''" alt="Weather Image">
+              <img :src="WeatherImageIdentifier(city.info.weather[0]?.main ?? '') ?? ''" alt="Weather Image">
             </section>
 
             <!-- Span to have a separation for icon and description -->
@@ -33,15 +33,15 @@
           <CardFooter class="grid grid-cols-2 gap-12">
             <!-- Weather Metrics -->
             <div class="flex flex-col gap-4">
-              <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'" :logo="humidity"
+              <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'" :logo="WeatherImageIdentifier('humidity')"
                 height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
-              <WeatherMetrics label="Wind Speed" :value="(city.info.wind.speed ?? '') + ' km/h'" :logo="windy"
+              <WeatherMetrics label="Wind Speed" :value="(city.info.wind.speed ?? '') + ' km/h'" :logo="WeatherImageIdentifier('windy')"
                 height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
             </div>
             <div class="flex flex-col gap-4">
-              <WeatherMetrics label="Feels Like" :value="(city.info.main.feels_like ?? '') + '°C'" :logo="temperature"
+              <WeatherMetrics label="Feels Like" :value="(city.info.main.feels_like ?? '') + '°C'" :logo="WeatherImageIdentifier('temperature')"
                 height="h-full" width="max-w-8 w-full" justifyContent="justify-start" />
-              <WeatherMetrics label="Pressure" :value="city.info.main.pressure ?? ''" :logo="pressure" height="h-full"
+              <WeatherMetrics label="Pressure" :value="city.info.main.pressure ?? ''" :logo="WeatherImageIdentifier('pressure')" height="h-full"
                 width="max-w-8 w-full" justifyContent="justify-start" />
             </div>
           </CardFooter>
@@ -113,6 +113,7 @@
 // imported functions
 import { ref, computed, reactive, onMounted } from 'vue'
 import { useWeatherStore } from '@/stores/weatherStore'
+import { WeatherImageIdentifier } from '@/utils/weatherImage'
 
 // imported components
 import Navbar from '@/components/Navbar/Navbar.vue'
@@ -121,22 +122,6 @@ import CardHeader from '@/components/Card/CardHeader.vue'
 import CardContent from '@/components/Card/CardContent.vue'
 import CardFooter from '@/components/Card/CardFooter.vue'
 import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
-
-// imported images for each weather scenarios
-import cloudy from '@/assets/weather_logo/cloudy.png'
-import not_found from '@/assets/weather_logo/not_found.png'
-import drizzle from '@/assets/weather_logo/drizzle.png'
-import foggy from '@/assets/weather_logo/foggy.png'
-import rain from '@/assets/weather_logo/rain.png'
-import snow from '@/assets/weather_logo/snow.png'
-import sunny from '@/assets/weather_logo/sunny.png'
-import thunderstorm from '@/assets/weather_logo/thunderstorm.png'
-import tornado from '@/assets/weather_logo/tornado.png'
-import windy from '@/assets/weather_logo/windy.png'
-import humidity from '@/assets/weather_logo/humidity.png'
-import temperature from '@/assets/weather_logo/temperature.png'
-import pressure from '@/assets/weather_logo/pressure.png'
-import location from '@/assets/weather_logo/location.png'
 
 const isCitiesLoaded = ref(false)
 const weatherStore = useWeatherStore()
@@ -156,7 +141,6 @@ const cities = reactive([
   { country: 'PH', city: 'San Jose' },
   { country: 'PH', city: 'Calamba' },
 ]);
-
 
 // Search input state
 const searchValue = ref('')
@@ -199,24 +183,6 @@ const fetchOverallCityWeather = async () => {
     }
   }
   return fetchedCities
-}
-
-
-// Identify main weather icon
-const currentWeatherImageIdentifier = (weather = '') => {
-  const weatherConditions = [
-    { main: 'thunderstorm', image: thunderstorm },
-    { main: 'drizzle', image: drizzle },
-    { main: 'rain', image: rain },
-    { main: 'snow', image: snow },
-    { main: 'clear', image: sunny },
-    { main: 'clouds', image: cloudy },
-    { main: 'mist', image: foggy },
-    { main: 'fog', image: foggy },
-    { main: 'tornado', image: tornado },
-  ]
-  const condition = weatherConditions.find((c) => c.main === weather.trim().toLowerCase())
-  return condition ? condition.image : not_found
 }
 
 // Fetch weather info on mount
