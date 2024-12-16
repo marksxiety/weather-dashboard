@@ -13,11 +13,7 @@ const router = createRouter({
     {
       path: '/city/:city',
       name: 'cityinfo',
-      component: CityInfo,
-      props: route => ({
-        city: route.params.city,
-        data: route.query.data ? JSON.parse(route.query.data) : null
-      })
+      component: CityInfo
     }
   ],
 })
