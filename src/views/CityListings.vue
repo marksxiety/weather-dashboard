@@ -15,7 +15,7 @@
           <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
             <!-- Weather Icon -->
             <section class="flex flex-col gap-4 items-center">
-              <img :src="currentWeatherImageIdentifier('') ?? ''" alt="Weather Image">
+              <img :src="currentWeatherImageIdentifier(city.info.weather[0]?.main ?? '') ?? ''" alt="Weather Image">
             </section>
 
             <!-- Span to have a separation for icon and description -->
