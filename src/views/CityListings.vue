@@ -5,7 +5,7 @@
       class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
       <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
         class="hover:cursor-pointer shadow-lg hover:shadow-none" bordercolor='primary'>
-        <router-link :to="`/city/${city.info.name ?? ''}`">
+        <router-link :to="{ path: `/city/${city.info.name.toLowerCase() ?? ''}`, query: { data: JSON.stringify(city.info) } }">
           <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
             <img :src="location ?? ''" alt="location" class="max-w-8 w-full h-full">
             <p class="text-lg font-semibold">{{ city.info.name ?? '' }}</p>
@@ -53,7 +53,8 @@
   <div v-else>
     <div
       class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
-      <Card v-for="city in filteredCities" :key="city.city ?? ''" class="animate-pulse shadow-lg cursor-progress" bordercolor='slate-400'>
+      <Card v-for="city in filteredCities" :key="city.city ?? ''" class="animate-pulse shadow-lg cursor-progress"
+        bordercolor='slate-400'>
         <CardHeader class="pr-2 pl-2 flex flex-row gap-4">
           <div class="rounded-lg bg-slate-400 h-6 w-6"></div>
           <div class="flex items-center w-full">
