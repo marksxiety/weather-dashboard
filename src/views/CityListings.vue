@@ -4,7 +4,7 @@
     <div
       class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
       <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
-        class="hover:cursor-grab shadow-lg hover:shadow-none">
+        class="hover:cursor-grab shadow-lg hover:shadow-none" bordercolor='primary'>
         <router-link :to="`/city/${city.info.name ?? ''}`">
           <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
             <img :src="location ?? ''" alt="location" class="max-w-8 w-full h-full">
