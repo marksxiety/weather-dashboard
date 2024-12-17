@@ -92,13 +92,14 @@ const cityWeather = computed(() => weatherStore.selectedCityWeather)
 
 // Fetch the weather data for the city when the component is mounted
 onMounted(async () => {
-  const cityName = route.params.city   // fetch the city in the url (this is the :city in path)
+  // fetch the route parameter of city and country /:country/:city
+  const cityName = route.params.city
+  const countryCode = route.params.country 
   const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY // fetch the api key since the process here is to reload the specific city weather
-  const country = 'PH' // hardcoded for a now since the default registered cities are in PH (philippines)
 
   try {
     // fetch the city information
-    const weatherData = await weatherStore.loadCityWeather(country, cityName, apiKey)
+    const weatherData = await weatherStore.loadCityWeather(countryCode, cityName, apiKey)
     // Store the fetched data in the store
     weatherStore.setSelectedCityWeather(weatherData)
     isLoaded.value = true
