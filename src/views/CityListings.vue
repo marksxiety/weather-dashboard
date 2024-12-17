@@ -140,7 +140,7 @@ const cities = reactive([
   { country: 'PH', city: 'Quezon' },
   { country: 'PH', city: 'San Jose' },
   { country: 'PH', city: 'Calamba' },
-]);
+])
 
 // Search input state
 const searchValue = ref('')
@@ -164,7 +164,7 @@ const fetchCityWeather = async (country, city, apiKey) => {
     return response
   } catch (error) {
     console.error(`Error fetching weather for ${city}:`, error)
-    return null;
+    return null
   }
 }
 
