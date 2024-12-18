@@ -4,36 +4,41 @@
     <div class="grid grid-cols-3 gap-4">
       <div class="grid grid-rows-3 col-span-2 min-h-screen gap-4">
         <Card class="h-full row-span-2 flex flex-col">
-          <p>{{ cityWeather.name }}</p>
-          <!-- coordinates -->
-          <p>{{ cityWeather.coord.lat }}</p>
-          <p>{{ cityWeather.coord.lon }}</p>
+          <Card class="h-full row-span-2 flex flex-col">
+            <!-- City name -->
+            <p><strong>City:</strong> {{ cityWeather.name }}</p>
 
-          <!-- main temperatures -->
-          <p>{{ cityWeather.main.feels_like }}</p>
-          <p>{{ cityWeather.main.grnd_level }}</p>
-          <p>{{ cityWeather.main.humidity }}</p>
-          <p>{{ cityWeather.main.pressure }}</p>
-          <p>{{ cityWeather.main.sea_level }}</p>
-          <p>{{ cityWeather.main.temp }}</p>
-          <p>{{ cityWeather.main.temp_max }}</p>
-          <p>{{ cityWeather.main.temp_min }}</p>
+            <!-- Coordinates -->
+            <p><strong>Latitude:</strong> {{ cityWeather.coord.lat }}</p>
+            <p><strong>Longitude:</strong> {{ cityWeather.coord.lon }}</p>
 
-          <!-- sun information -->
-          <p>{{ cityWeather.sys.sunrise }}</p>
-          <p>{{ cityWeather.sys.sunset }}</p>
+            <!-- Main temperatures -->
+            <p><strong>Feels Like:</strong> {{ cityWeather.main.feels_like }} °C</p>
+            <p><strong>Ground Level Pressure:</strong> {{ cityWeather.main.grnd_level }} hPa</p>
+            <p><strong>Humidity:</strong> {{ cityWeather.main.humidity }} %</p>
+            <p><strong>Pressure:</strong> {{ cityWeather.main.pressure }} hPa</p>
+            <p><strong>Sea Level Pressure:</strong> {{ cityWeather.main.sea_level }} hPa</p>
+            <p><strong>Temperature:</strong> {{ cityWeather.main.temp }} °C</p>
+            <p><strong>Max Temperature:</strong> {{ cityWeather.main.temp_max }} °C</p>
+            <p><strong>Min Temperature:</strong> {{ cityWeather.main.temp_min }} °C</p>
 
-          <!-- country information -->
-          <p>{{ cityWeather.sys.country }}</p>
+            <!-- Sun information -->
+            <p><strong>Sunrise:</strong> {{ cityWeather.sys.sunrise }}</p>
+            <p><strong>Sunset:</strong> {{ cityWeather.sys.sunset }}</p>
 
-          <!-- timezone information -->
-          <p>{{ cityWeather.timezone }}</p>
+            <!-- Country information -->
+            <p><strong>Country:</strong> {{ cityWeather.sys.country }}</p>
 
-          <!-- wind information -->
-          <p>{{ cityWeather.wind.deg }}</p>
-          <p>{{ cityWeather.wind.gust }}</p>
-          <p>{{ cityWeather.wind.speed }}</p>
-          
+            <!-- Timezone information -->
+            <p><strong>Timezone Offset:</strong> {{ cityWeather.timezone }} hours</p>
+
+            <!-- Wind information -->
+            <p><strong>Wind Direction:</strong> {{ cityWeather.wind.deg }}°</p>
+            <p><strong>Wind Gust:</strong> {{ cityWeather.wind.gust }} m/s</p>
+            <p><strong>Wind Speed:</strong> {{ cityWeather.wind.speed }} m/s</p>
+          </Card>
+
+
         </Card>
         <div class="flex flex-row h-full gap-2 row-span-1">
           <Card class="h-full w-full">
@@ -94,7 +99,7 @@ const cityWeather = computed(() => weatherStore.selectedCityWeather)
 onMounted(async () => {
   // fetch the route parameter of city and country /:country/:city
   const cityName = route.params.city
-  const countryCode = route.params.country 
+  const countryCode = route.params.country
   const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY // fetch the api key since the process here is to reload the specific city weather
 
   try {
