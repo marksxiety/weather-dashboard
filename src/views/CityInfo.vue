@@ -23,14 +23,14 @@
             <p><strong>Min Temperature:</strong> {{ cityWeather.main.temp_min }} °C</p>
 
             <!-- Sun information -->
-            <p><strong>Sunrise:</strong> {{ cityWeather.sys.sunrise }}</p>
-            <p><strong>Sunset:</strong> {{ cityWeather.sys.sunset }}</p>
+            <p><strong>Sunrise:</strong> {{ new Date(cityWeather.sys.sunrise * 1000).toLocaleTimeString() }}</p>
+            <p><strong>Sunset:</strong> {{ new Date(cityWeather.sys.sunset * 1000).toLocaleTimeString() }}</p>
 
             <!-- Country information -->
             <p><strong>Country:</strong> {{ cityWeather.sys.country }}</p>
 
             <!-- Timezone information -->
-            <p><strong>Timezone Offset:</strong> {{ cityWeather.timezone }} hours</p>
+            <p><strong>Timezone Offset:</strong> {{ cityWeather.timezone / 3600 }} hours</p>
 
             <!-- Wind information -->
             <p><strong>Wind Direction:</strong> {{ cityWeather.wind.deg }}°</p>
