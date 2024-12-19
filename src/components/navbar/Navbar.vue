@@ -14,10 +14,10 @@
         </div>
         <div class="flex justify-between gap-4 items-center">
             <NavbarCard>
-                <Icon icon="mdi:cloud-cog-outline" class="w-8 h-9" />
+                <p class="mr-2 ml-2 hover:underline cursor-pointer">Settings</p>
             </NavbarCard>
             <NavbarCard>
-                <Icon icon="fluent:cloud-add-20-regular" class="w-8 h-9" />
+                <p class="mr-2 ml-2 hover:underline cursor-pointer">Favourites</p>
             </NavbarCard>
             <NavbarCard>
                 <Icon icon="lucide:sun" class="w-8 h-9" />
