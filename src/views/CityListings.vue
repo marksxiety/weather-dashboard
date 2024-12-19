@@ -33,16 +33,20 @@
           <CardFooter class="grid grid-cols-2 gap-12">
             <!-- Weather Metrics -->
             <div class="flex flex-col gap-4">
-              <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'" :logo="WeatherImageIdentifier('humidity')"
-                height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
-              <WeatherMetrics label="Wind Speed" :value="(city.info.wind.speed ?? '') + ' km/h'" :logo="WeatherImageIdentifier('windy')"
-                height="h-full" width="max-w-8 w-full" justifyContent="justify-end" :imgFirst="false" />
+              <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'"
+                :logo="WeatherImageIdentifier('humidity')" height="h-full" width="max-w-8 w-full"
+                justifyContent="justify-end" :imgFirst="false" />
+              <WeatherMetrics label="Wind Speed" :value="(city.info.wind.speed ?? '') + ' km/h'"
+                :logo="WeatherImageIdentifier('windy')" height="h-full" width="max-w-8 w-full"
+                justifyContent="justify-end" :imgFirst="false" />
             </div>
             <div class="flex flex-col gap-4">
-              <WeatherMetrics label="Feels Like" :value="(city.info.main.feels_like ?? '') + '°C'" :logo="WeatherImageIdentifier('temperature')"
-                height="h-full" width="max-w-8 w-full" justifyContent="justify-start" />
-              <WeatherMetrics label="Pressure" :value="city.info.main.pressure ?? ''" :logo="WeatherImageIdentifier('pressure')" height="h-full"
-                width="max-w-8 w-full" justifyContent="justify-start" />
+              <WeatherMetrics label="Feels Like" :value="(city.info.main.feels_like ?? '') + '°C'"
+                :logo="WeatherImageIdentifier('temperature')" height="h-full" width="max-w-8 w-full"
+                justifyContent="justify-start" />
+              <WeatherMetrics label="Pressure" :value="city.info.main.pressure ?? ''"
+                :logo="WeatherImageIdentifier('pressure')" height="h-full" width="max-w-8 w-full"
+                justifyContent="justify-start" />
             </div>
           </CardFooter>
         </router-link>
@@ -187,9 +191,19 @@ const fetchOverallCityWeather = async () => {
 
 // Fetch weather info on mount
 onMounted(async () => {
-  let processedCities = await fetchOverallCityWeather()
-  if (processedCities) {
+  // Check if there are loaded cities in the store
+  // getLoadedCities function returns array of object when mounted (if there's loaded cities)
+  if (weatherStore.getLoadedCities().length > 0) {
+    // Use the loaded cities from the store
+    cities.splice(0, cities.length, ...weatherStore.getLoadedCities())
     isCitiesLoaded.value = true
+  } else {
+    //fetch the cities and store them
+    let processedCities = await fetchOverallCityWeather()
+    if (processedCities) {
+      isCitiesLoaded.value = true
+      weatherStore.setLoadedCities(cities) // store the fetched cities in set function that will accessed first when the page in mounted
+    }
   }
 })
 </script>
