@@ -1,13 +1,14 @@
-import { defineStore } from "pinia"
-import axiosConfig from "@/plugins"
+import { defineStore } from 'pinia'
+import axiosConfig from '@/plugins'
 
-export const useWeatherStore = defineStore("weatherStore", {
+export const useWeatherStore = defineStore('weatherStore', {
   state: () => ({
     // initial values for weather state
-    data: [], 
+    data: [],
     selectedCityWeather: null,
     loading: false,
     error: null,
+    loadedCities: [],
   }),
   actions: {
     async loadCityWeather(country, city, apiKey) {
@@ -28,6 +29,16 @@ export const useWeatherStore = defineStore("weatherStore", {
     ///ensure that the weather data for the specific city is stored in a dedicated place
     setSelectedCityWeather(cityWeatherData) {
       this.selectedCityWeather = cityWeatherData
+    },
+
+    // Set loaded cities in the store
+    setLoadedCities(citiesData) {
+      this.loadedCities = citiesData
+    },
+
+    // Get loaded cities from the store
+    getLoadedCities() {
+      return this.loadedCities
     },
   },
 })
