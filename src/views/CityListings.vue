@@ -1,5 +1,5 @@
 <template>
-  <Navbar @search-city="handleSearchCity" />
+  <Navbar @search-city="handleSearchCity" @refresh-cities="handleRefreshCities"/>
   <div v-if="isCitiesLoaded">
     <div
       class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
@@ -187,6 +187,15 @@ const fetchOverallCityWeather = async () => {
     }
   }
   return fetchedCities
+}
+
+const handleRefreshCities = async () => {
+  isCitiesLoaded.value = false
+  let processedCities = await fetchOverallCityWeather()
+  if (processedCities) {
+    isCitiesLoaded.value = true
+    weatherStore.setLoadedCities(cities)
+  }
 }
 
 // Fetch weather info on mount
