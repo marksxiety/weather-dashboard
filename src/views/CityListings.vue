@@ -8,7 +8,7 @@
         <router-link :to="{ path: `/city/${city.info.sys.country}/${city.info.name.toLowerCase() ?? ''}` }">
           <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
             <img :src="WeatherImageIdentifier('location') ?? ''" alt="location" class="max-w-8 w-full h-full">
-            <p class="text-lg font-semibold">{{ city.info.name ?? '' }}</p>
+            <router-link :to="{ path: `/city/${city.info.sys.country}/${city.info.name.toLowerCase() ?? ''}` }"  class="text-lg font-semibold hover:underline" >{{ city.info.name ?? '' }} </router-link>
             <!-- <hr class="bg-primary h-0.5"> -->
           </CardHeader>
 
