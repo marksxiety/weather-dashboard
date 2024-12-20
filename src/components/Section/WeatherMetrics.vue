@@ -1,5 +1,5 @@
 <template>
-  <div class="grid place-content-center">
+  <div class="grid">
     <div class="flex gap-x-4 w-full" :class="['flex-row', justifyContent]">
       <template v-if="imgFirst">
         <img :src="logo" alt="Weather Information" :class="[height, width]" />
