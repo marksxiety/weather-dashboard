@@ -19,7 +19,7 @@
             <NavbarCard>
                 <p class="mr-2 ml-2 hover:underline cursor-pointer">Favourites</p>
             </NavbarCard>
-            <NavbarCard title="Refresh">
+            <NavbarCard title="Refresh" @click="handleRefresh">
                 <Icon icon="material-symbols:refresh-rounded" class="w-8 h-9"/>
             </NavbarCard>
         </div>
@@ -32,8 +32,12 @@ import { Icon } from '@iconify/vue'
 import NavbarCard from '@/components/Navbar/NavbarCard.vue'
 const searchValue = ref('')
 
-const emit = defineEmits(['search-city'])
+const emit = defineEmits(['search-city','refresh-cities'])
 const handleSearch = () => {
     emit('search-city', searchValue.value)
+}
+
+const handleRefresh = () => {
+    emit('refresh-cities')
 }
 </script>
