@@ -20,8 +20,7 @@
                 <p class="mr-2 ml-2 hover:underline cursor-pointer">Favourites</p>
             </NavbarCard>
             <NavbarCard>
-                <Icon icon="lucide:sun" class="w-8 h-9" />
-                <Icon icon="lucide:moon" class="w-8 h-9" hidden />
+                <Icon icon="material-symbols:refresh-rounded" class="w-8 h-9"/>
             </NavbarCard>
         </div>
     </div>
