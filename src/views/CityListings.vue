@@ -118,6 +118,7 @@
 import { ref, computed, reactive, onMounted } from 'vue'
 import { useWeatherStore } from '@/stores/weatherStore'
 import { WeatherImageIdentifier } from '@/utils/weatherImage'
+import { useRoute } from 'vue-router'
 
 // imported components
 import Navbar from '@/components/Navbar/Navbar.vue'
@@ -129,6 +130,7 @@ import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
 
 const isCitiesLoaded = ref(false)
 const weatherStore = useWeatherStore()
+const route = useRoute()
 
 // API Key
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
@@ -190,12 +192,17 @@ const fetchOverallCityWeather = async () => {
 }
 
 const handleRefreshCities = async () => {
-  isCitiesLoaded.value = false
-  let processedCities = await fetchOverallCityWeather()
-  if (processedCities) {
-    isCitiesLoaded.value = true
-    weatherStore.setLoadedCities(cities)
+
+  let currentPath = route.fullPath
+  if (currentPath == '/') {
+    isCitiesLoaded.value = false
+    let processedCities = await fetchOverallCityWeather()
+    if (processedCities) {
+      isCitiesLoaded.value = true
+      weatherStore.setLoadedCities(cities)
+    }
   }
+
 }
 
 // Fetch weather info on mount

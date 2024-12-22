@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar @refresh-cities="handleRefreshCities"/>
   <div v-if="cityWeather && isLoaded" class="p-4">
     <div class="grid grid-cols-3 gap-4">
       <div class="grid grid-rows-3 col-span-2 min-h-screen gap-4">
@@ -111,6 +111,12 @@ const loadCurrentCity = async (countryCode, cityName, apiKey) => {
   } catch (error) {
     // throw an error in case the fethcing is not successful
     console.error('error fetching city weather', cityWeather)
+  }
+}
+
+const handleRefreshCities = async () => {
+  if (cityName && countryCode) {
+    await loadCurrentCity(countryCode, cityName, apiKey)
   }
 }
 
