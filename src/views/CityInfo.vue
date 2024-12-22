@@ -93,15 +93,14 @@ const weatherStore = useWeatherStore()
 const route = useRoute()
 const isLoaded = ref(false)
 
+// fetch the route parameter of city and country /:country/:city
+const cityName = route.params.city
+const countryCode = route.params.country
+const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY // fetch the api key since the process here is to reload the specific city weather
+
 const cityWeather = computed(() => weatherStore.selectedCityWeather)
 
-// Fetch the weather data for the city when the component is mounted
-onMounted(async () => {
-  // fetch the route parameter of city and country /:country/:city
-  const cityName = route.params.city
-  const countryCode = route.params.country
-  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY // fetch the api key since the process here is to reload the specific city weather
-
+const loadCurrentCity = async (countryCode, cityName, apiKey) => {
   try {
     // fetch the city information
     const weatherData = await weatherStore.loadCityWeather(countryCode, cityName, apiKey)
@@ -113,5 +112,10 @@ onMounted(async () => {
     // throw an error in case the fethcing is not successful
     console.error('error fetching city weather', cityWeather)
   }
+}
+
+// Fetch the weather data for the city when the component is mounted
+onMounted(async () => {
+  await loadCurrentCity(countryCode, cityName, apiKey)
 })
 </script>
