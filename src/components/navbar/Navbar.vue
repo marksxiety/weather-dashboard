@@ -1,23 +1,25 @@
 <template>
-    <Modal :isOpen="isModalOpen" title="Form Modal" @close="closeModal">
-      <form @submit.prevent="handleFormSubmit">
-        <div class="flex flex-col gap-4">
-          <label class="flex flex-col">
-            <span class="font-medium">Name</span>
-            <input type="text" v-model="formData.name" class="input input-bordered w-full" placeholder="Enter your name" required />
-          </label>
-
-          <label class="flex flex-col">
-            <span class="font-medium">Email</span>
-            <input type="email" v-model="formData.email" class="input input-bordered w-full" placeholder="Enter your email" required />
-          </label>
-
-          <label class="flex flex-col">
-            <span class="font-medium">Message</span>
-            <textarea v-model="formData.message" class="textarea textarea-bordered w-full" placeholder="Enter your message" rows="4"></textarea>
-          </label>
-        </div>
-      </form>
+    <Modal :isOpen="isModalOpen" title="Register City" @close="closeModal">
+        <form>
+            <div class="flex flex-col gap-4">
+                <div
+                    class="flex items-center rounded-2xl pl-3 w-full outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-primary">
+                    <div class="shrink-0 select-none text-base text-gray-500 sm:text-sm/6">
+                    </div>
+                    <input type="text" name="countryInput" id="countryInput"
+                        class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
+                        placeholder="Enter country..." v-model="formInput.country"/>
+                </div>
+                <div
+                    class="flex items-center rounded-2xl pl-3 w-full outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-primary">
+                    <div class="shrink-0 select-none text-base text-gray-500 sm:text-sm/6">
+                    </div>
+                    <input type="text" name="cityInputs" id="cityInputs"
+                        class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
+                        placeholder="Enter city..." v-model="formInput.city"/>
+                </div>
+            </div>
+        </form>
     </Modal>
 
 
@@ -42,7 +44,7 @@
                 <p class="mr-2 ml-2 hover:underline cursor-pointer">Register</p>
             </NavbarCard>
             <NavbarCard title="Refresh" @click="handleRefresh">
-                <Icon icon="material-symbols:refresh-rounded" class="w-8 h-9"/>
+                <Icon icon="material-symbols:refresh-rounded" class="w-8 h-9" />
             </NavbarCard>
         </div>
     </div>
@@ -55,7 +57,7 @@ import NavbarCard from '@/components/Navbar/NavbarCard.vue'
 import Modal from '../Modal/Modal.vue'
 const searchValue = ref('')
 
-const emit = defineEmits(['search-city','refresh-cities'])
+const emit = defineEmits(['search-city', 'refresh-cities'])
 const handleSearch = () => {
     emit('search-city', searchValue.value)
 }
@@ -64,20 +66,18 @@ const handleRefresh = () => {
     emit('refresh-cities')
 }
 
-
 const isModalOpen = ref(false);
-const formData = ref({
-  name: '',
-  email: '',
-  message: '',
+const formInput = ref({
+    country: '',
+    city: ''
 });
 
 const openModal = () => {
-  isModalOpen.value = true
+    isModalOpen.value = true
 }
 
 const closeModal = () => {
-  isModalOpen.value = false
+    isModalOpen.value = false
 }
 
 </script>
