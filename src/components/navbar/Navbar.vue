@@ -17,7 +17,7 @@
                 <p class="mr-2 ml-2 hover:underline cursor-pointer">Settings</p>
             </NavbarCard>
             <NavbarCard>
-                <p class="mr-2 ml-2 hover:underline cursor-pointer">Favourites</p>
+                <p class="mr-2 ml-2 hover:underline cursor-pointer">Register City</p>
             </NavbarCard>
             <NavbarCard title="Refresh" @click="handleRefresh">
                 <Icon icon="material-symbols:refresh-rounded" class="w-8 h-9"/>
