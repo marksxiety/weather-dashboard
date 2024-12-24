@@ -4,7 +4,7 @@
             <!-- Modal Header -->
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-semibold">{{ title }}</h3>
-                <button class="text-gray-500 hover:text-gray-700" @click="closeModal">×</button>
+                <button class="text-gray-500 hover:text-gray-700 p-2 text-2xl font-bold" @click="closeModal">×</button>
             </div>
 
             <!-- Modal Body -->
