@@ -20,8 +20,8 @@
                 </div>
             </div>
             <div class="flex justify-end gap-4 mt-6">
-                <button type="button" class="btn btn-outline" @click="closeModal">Cancel</button>
-                <button type="button" class="btn btn-primary" @click="handleSubmit">Submit</button>
+                <button type="button" class="bg-separator text-md rounded-md p-2" @click="closeModal">Cancel</button>
+                <button type="button" class="bg-dark text-md rounded-md p-2 text-background" @click="handleSubmit">Submit</button>
             </div>
         </form>
     </Modal>
