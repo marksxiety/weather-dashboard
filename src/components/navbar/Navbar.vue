@@ -1,4 +1,26 @@
 <template>
+    <Modal :isOpen="isModalOpen" title="Form Modal" @close="closeModal">
+      <form @submit.prevent="handleFormSubmit">
+        <div class="flex flex-col gap-4">
+          <label class="flex flex-col">
+            <span class="font-medium">Name</span>
+            <input type="text" v-model="formData.name" class="input input-bordered w-full" placeholder="Enter your name" required />
+          </label>
+
+          <label class="flex flex-col">
+            <span class="font-medium">Email</span>
+            <input type="email" v-model="formData.email" class="input input-bordered w-full" placeholder="Enter your email" required />
+          </label>
+
+          <label class="flex flex-col">
+            <span class="font-medium">Message</span>
+            <textarea v-model="formData.message" class="textarea textarea-bordered w-full" placeholder="Enter your message" rows="4"></textarea>
+          </label>
+        </div>
+      </form>
+    </Modal>
+
+
     <div class="min-h-14 border-b-2 shadow-sm flex justify-between gap-4 pb-4 pt-4 pl-6 pr-6">
         <div class="grid place-content-center font-semibold">
             <h2>CloudSnap</h2>
@@ -16,8 +38,8 @@
             <NavbarCard>
                 <p class="mr-2 ml-2 hover:underline cursor-pointer">Settings</p>
             </NavbarCard>
-            <NavbarCard>
-                <p class="mr-2 ml-2 hover:underline cursor-pointer">Register City</p>
+            <NavbarCard @click="openModal">
+                <p class="mr-2 ml-2 hover:underline cursor-pointer">Register</p>
             </NavbarCard>
             <NavbarCard title="Refresh" @click="handleRefresh">
                 <Icon icon="material-symbols:refresh-rounded" class="w-8 h-9"/>
@@ -30,6 +52,7 @@
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import NavbarCard from '@/components/Navbar/NavbarCard.vue'
+import Modal from '../Modal/Modal.vue'
 const searchValue = ref('')
 
 const emit = defineEmits(['search-city','refresh-cities'])
@@ -40,4 +63,21 @@ const handleSearch = () => {
 const handleRefresh = () => {
     emit('refresh-cities')
 }
+
+
+const isModalOpen = ref(false);
+const formData = ref({
+  name: '',
+  email: '',
+  message: '',
+});
+
+const openModal = () => {
+  isModalOpen.value = true
+}
+
+const closeModal = () => {
+  isModalOpen.value = false
+}
+
 </script>
