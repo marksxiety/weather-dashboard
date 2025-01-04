@@ -66,7 +66,8 @@
       </div>
       <Card class="col-span-1 h-full min-h-screen">
         <div class="grid grid-rows-4 h-full">
-          <div class="row-span-1 grid place-content-center">
+          <div class="row-span-1 grid place-content-center gap-4">
+            <img :src="WeatherImageIdentifier(cityWeather.weather[0].main)" alt="weather icon" class="max-w-full max-h-48" />
             <p class="text-center">{{ cityWeather.main.temp }} °C</p>
             <p class="text-center">{{ cityWeather.weather[0].description }}</p>
           </div>
@@ -88,6 +89,7 @@ import { onMounted, computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Card from '@/components/Card/Card.vue'
+import { WeatherImageIdentifier } from '@/utils/weatherImage'
 
 const weatherStore = useWeatherStore()
 const route = useRoute()
