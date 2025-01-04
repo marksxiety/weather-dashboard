@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import not_found from '@/assets/weather_logo/not_found.png'
+import not_found from '@/assets/images/not_found.png'
 
 const props = defineProps({
   logo: {

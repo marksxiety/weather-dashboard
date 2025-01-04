@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar @refresh-cities="handleRefreshCities"/>
   <div v-if="cityWeather && isLoaded" class="p-4">
     <div class="grid grid-cols-3 gap-4">
       <div class="grid grid-rows-3 col-span-2 min-h-screen gap-4">
@@ -95,15 +95,14 @@ const weatherStore = useWeatherStore()
 const route = useRoute()
 const isLoaded = ref(false)
 
+// fetch the route parameter of city and country /:country/:city
+const cityName = route.params.city
+const countryCode = route.params.country
+const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY // fetch the api key since the process here is to reload the specific city weather
+
 const cityWeather = computed(() => weatherStore.selectedCityWeather)
 
-// Fetch the weather data for the city when the component is mounted
-onMounted(async () => {
-  // fetch the route parameter of city and country /:country/:city
-  const cityName = route.params.city
-  const countryCode = route.params.country
-  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY // fetch the api key since the process here is to reload the specific city weather
-
+const loadCurrentCity = async (countryCode, cityName, apiKey) => {
   try {
     // fetch the city information
     const weatherData = await weatherStore.loadCityWeather(countryCode, cityName, apiKey)
@@ -115,5 +114,16 @@ onMounted(async () => {
     // throw an error in case the fethcing is not successful
     console.error('error fetching city weather', cityWeather)
   }
+}
+
+const handleRefreshCities = async () => {
+  if (cityName && countryCode) {
+    await loadCurrentCity(countryCode, cityName, apiKey)
+  }
+}
+
+// Fetch the weather data for the city when the component is mounted
+onMounted(async () => {
+  await loadCurrentCity(countryCode, cityName, apiKey)
 })
 </script>

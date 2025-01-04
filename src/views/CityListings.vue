@@ -3,8 +3,7 @@
   <div v-if="isCitiesLoaded">
     <div
       class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
-      <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
-        class="hover:cursor-pointer shadow-lg hover:shadow-none" bordercolor='primary'>
+      <Card v-for="city in filteredCities" :key="city.info.name ?? ''">
         <router-link :to="{ path: `/city/${city.info.sys.country}/${city.info.name.toLowerCase() ?? ''}` }">
           <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
             <img :src="WeatherImageIdentifier('location') ?? ''" alt="location" class="max-w-8 w-full h-full">
@@ -118,6 +117,7 @@
 import { ref, computed, reactive, onMounted } from 'vue'
 import { useWeatherStore } from '@/stores/weatherStore'
 import { WeatherImageIdentifier } from '@/utils/weatherImage'
+import { useRoute } from 'vue-router'
 
 // imported components
 import Navbar from '@/components/Navbar/Navbar.vue'
@@ -129,6 +129,7 @@ import WeatherMetrics from '@/components/Section/WeatherMetrics.vue'
 
 const isCitiesLoaded = ref(false)
 const weatherStore = useWeatherStore()
+const route = useRoute()
 
 // API Key
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
@@ -190,12 +191,17 @@ const fetchOverallCityWeather = async () => {
 }
 
 const handleRefreshCities = async () => {
-  isCitiesLoaded.value = false
-  let processedCities = await fetchOverallCityWeather()
-  if (processedCities) {
-    isCitiesLoaded.value = true
-    weatherStore.setLoadedCities(cities)
+
+  let currentPath = route.fullPath
+  if (currentPath == '/') {
+    isCitiesLoaded.value = false
+    let processedCities = await fetchOverallCityWeather()
+    if (processedCities) {
+      isCitiesLoaded.value = true
+      weatherStore.setLoadedCities(cities)
+    }
   }
+
 }
 
 // Fetch weather info on mount

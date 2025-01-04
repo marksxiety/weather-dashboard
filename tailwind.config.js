@@ -7,13 +7,18 @@ export default {
         sans: ['Poppins', 'sans-serif'],
       },
       colors: {
-        primary: '#3B82F6',    // Bright blue (clear skies)
-        secondary: '#F59E0B',  // Warm gold (sunny)
-        tertiary: '#10B981',   // Soft green (mild weather)
-        accent: '#F43F5E',     // Vibrant red (rain/storm)
-        background: '#F9FAFB', // Light gray (background)
-        dark: '#1F2937',       // Dark charcoal (text and accents)
-        separator: '#D3D3D3'
+        primary: '#3B82F6',    
+        secondary: '#F59E0B',  
+        tertiary: '#10B981',  
+        background: '#F9FAFB',
+        dark: '#1F2937',     
+        separator: '#D3D3D3',
+        core: '#11151C',
+        supportive: '#212D40',
+        additional: '#59A5D8',
+        base: '#364156',
+        accent: '#84D2F6',
+        textcolor: '#F9FAFB'
       },
     },
   },
