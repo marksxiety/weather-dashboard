@@ -39,7 +39,6 @@
                 class="block min-w-0 grow py-2 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 bg-transparent focus:outline-none"
                 placeholder="Search cities..." v-model="searchValue" @input="handleSearch" />
         </div>
-        <Input/> 
         <div class="flex justify-between gap-4 items-center">
             <NavbarCard @click="openModal">
                 <p class="mr-2 ml-2 flex flex-row gap-2 hover:underline cursor-pointer text-indigo-700 font-semibold">
@@ -59,7 +58,6 @@ import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import NavbarCard from '@/components/Navbar/NavbarCard.vue'
 import Modal from '../Modal/Modal.vue'
-import Input from '../Input/Input.vue'
 const searchValue = ref('')
 
 const emit = defineEmits(['search-city', 'refresh-cities', 'search'])
