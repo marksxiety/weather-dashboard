@@ -1,8 +1,11 @@
 <template>
-  <div class="grid">
-    <div class="flex gap-x-4 w-full" :class="['flex-row', justifyContent]">
+  <div class="grid text-black">
+    <div
+      class="flex gap-x-4 w-full items-center px-3 py-2 rounded-xl bg-white/80 shadow-sm"
+      :class="['flex-row', justifyContent]"
+    >
       <template v-if="imgFirst">
-        <img :src="logo" alt="Weather Information" :class="[height, width]" />
+        <img :src="logo" alt="Weather Information" :class="[height, width, 'drop-shadow']" />
         <div class="flex flex-col">
           <p :class="valueClass">{{ value }}</p>
           <p :class="labelClass">{{ label }}</p>
@@ -13,7 +16,7 @@
           <p :class="valueClass">{{ value }}</p>
           <p :class="labelClass">{{ label }}</p>
         </div>
-        <img :src="logo" alt="Weather Information" :class="[height, width]" />
+        <img :src="logo" alt="Weather Information" :class="[height, width, 'drop-shadow']" />
       </template>
     </div>
   </div>
