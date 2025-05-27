@@ -1,79 +1,82 @@
 <template>
-  <Navbar @refresh-cities="handleRefreshCities"/>
-  <div v-if="cityWeather && isLoaded" class="p-4">
-    <div class="grid grid-cols-3 gap-4">
-      <div class="grid grid-rows-3 col-span-2 min-h-screen gap-4">
-        <Card class="h-full row-span-2 flex flex-col">
-          <Card class="h-full row-span-2 flex flex-col">
-            <!-- City name -->
-            <p><strong>City:</strong> {{ cityWeather.name }}</p>
-
-            <!-- Coordinates -->
-            <p><strong>Latitude:</strong> {{ cityWeather.coord.lat }}</p>
-            <p><strong>Longitude:</strong> {{ cityWeather.coord.lon }}</p>
-
-            <!-- Main temperatures -->
-            <p><strong>Feels Like:</strong> {{ cityWeather.main.feels_like }} °C</p>
-            <p><strong>Ground Level Pressure:</strong> {{ cityWeather.main.grnd_level }} hPa</p>
-            <p><strong>Humidity:</strong> {{ cityWeather.main.humidity }} %</p>
-            <p><strong>Pressure:</strong> {{ cityWeather.main.pressure }} hPa</p>
-            <p><strong>Sea Level Pressure:</strong> {{ cityWeather.main.sea_level }} hPa</p>
-            <p><strong>Temperature:</strong> {{ cityWeather.main.temp }} °C</p>
-            <p><strong>Max Temperature:</strong> {{ cityWeather.main.temp_max }} °C</p>
-            <p><strong>Min Temperature:</strong> {{ cityWeather.main.temp_min }} °C</p>
-
-            <!-- Sun information -->
-            <p><strong>Sunrise:</strong> {{ new Date(cityWeather.sys.sunrise * 1000).toLocaleTimeString() }}</p>
-            <p><strong>Sunset:</strong> {{ new Date(cityWeather.sys.sunset * 1000).toLocaleTimeString() }}</p>
-
-            <!-- Country information -->
-            <p><strong>Country:</strong> {{ cityWeather.sys.country }}</p>
-
-            <!-- Timezone information -->
-            <p><strong>Timezone Offset:</strong> {{ cityWeather.timezone / 3600 }} hours</p>
-
-            <!-- Wind information -->
-            <p><strong>Wind Direction:</strong> {{ cityWeather.wind.deg }}°</p>
-            <p><strong>Wind Gust:</strong> {{ cityWeather.wind.gust }} m/s</p>
-            <p><strong>Wind Speed:</strong> {{ cityWeather.wind.speed }} m/s</p>
-          </Card>
-
-
+  <Navbar @refresh-cities="handleRefreshCities" />
+  <div v-if="cityWeather && isLoaded" class="p-6">
+    <div class="grid grid-cols-3 gap-6">
+      <!-- Main Info & Weekly Forecast -->
+      <div class="grid grid-rows-3 col-span-2 min-h-screen gap-6">
+        <!-- Main City Info Card -->
+        <Card class="h-full row-span-2 flex flex-col bg-white/90 backdrop-blur-md shadow-xl rounded-3xl p-8"
+          pointerhover="">
+          <div class="flex flex-col gap-2">
+            <nav class="mb-6 text-sm text-gray-500 flex items-center gap-2">
+              <router-link to="/" class="hover:underline text-indigo-700 font-semibold">Dashboard</router-link>
+              <span>/</span>
+              <span class="text-gray-700 font-semibold">{{ cityWeather.name }}</span>
+            </nav>
+            <h2 class="text-3xl font-bold text-indigo-700 mb-2">{{ cityWeather.name }}, {{ cityWeather.sys.country }}
+            </h2>
+            <div class="flex flex-wrap gap-4 text-gray-700 text-lg">
+              <div>
+                <span class="font-semibold">Lat:</span> {{ cityWeather.coord.lat }}
+              </div>
+              <div>
+                <span class="font-semibold">Lon:</span> {{ cityWeather.coord.lon }}
+              </div>
+              <div>
+                <span class="font-semibold">Timezone:</span> UTC{{ cityWeather.timezone / 3600 >= 0 ? '+' : '' }}{{
+                  cityWeather.timezone / 3600 }}
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <p class="text-gray-900 text-xl font-semibold">🌡️ {{ cityWeather.main.temp }} °C</p>
+                <p class="text-gray-500 capitalize">{{ cityWeather.weather[0].description }}</p>
+                <p class="text-gray-700 mt-2">Feels Like: <span class="font-semibold">{{ cityWeather.main.feels_like }}
+                    °C</span></p>
+                <p class="text-gray-700">Humidity: <span class="font-semibold">{{ cityWeather.main.humidity }}%</span>
+                </p>
+                <p class="text-gray-700">Pressure: <span class="font-semibold">{{ cityWeather.main.pressure }}
+                    hPa</span></p>
+                <p class="text-gray-700">Sea Level: <span class="font-semibold">{{ cityWeather.main.sea_level }}
+                    hPa</span></p>
+                <p class="text-gray-700">Ground Level: <span class="font-semibold">{{ cityWeather.main.grnd_level }}
+                    hPa</span></p>
+              </div>
+              <div>
+                <p class="text-gray-700">Max Temp: <span class="font-semibold">{{ cityWeather.main.temp_max }} °C</span>
+                </p>
+                <p class="text-gray-700">Min Temp: <span class="font-semibold">{{ cityWeather.main.temp_min }} °C</span>
+                </p>
+                <p class="text-gray-700">Wind: <span class="font-semibold">{{ cityWeather.wind.speed }} m/s</span> ({{
+                  cityWeather.wind.deg }}°)</p>
+                <p class="text-gray-700">Gust: <span class="font-semibold">{{ cityWeather.wind.gust }} m/s</span></p>
+                <p class="text-gray-700">Sunrise: <span class="font-semibold">{{ new Date(cityWeather.sys.sunrise *
+                  1000).toLocaleTimeString() }}</span></p>
+                <p class="text-gray-700">Sunset: <span class="font-semibold">{{ new Date(cityWeather.sys.sunset *
+                  1000).toLocaleTimeString() }}</span></p>
+              </div>
+            </div>
+          </div>
         </Card>
-        <div class="flex flex-row h-full gap-2 row-span-1">
-          <Card class="h-full w-full">
-            Monday
-          </Card>
-          <Card class="h-full w-full">
-            Tuesday
-          </Card>
-          <Card class="h-full w-full">
-            Wednesday
-          </Card>
-          <Card class="h-full w-full">
-            Thursday
-          </Card>
-          <Card class="h-full w-full">
-            Friday
-          </Card>
-          <Card class="h-full w-full">
-            Saturday
-          </Card>
-          <Card class="h-full w-full">
-            Friday
+        <!-- Weekly Forecast Cards -->
+        <div class="flex flex-row h-full gap-4 row-span-1">
+          <Card v-for="day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']" :key="day"
+            class="h-full w-full flex items-center justify-center bg-white/80 rounded-2xl shadow hover:shadow-lg transition cursor-pointer font-semibold text-indigo-700 text-lg">
+            {{ day }}
           </Card>
         </div>
       </div>
-      <Card class="col-span-1 h-full min-h-screen">
-        <div class="grid grid-rows-4 h-full">
-          <div class="row-span-1 grid place-content-center gap-4">
-            <img :src="WeatherImageIdentifier(cityWeather.weather[0].main)" alt="weather icon" class="max-w-full max-h-48" />
-            <p class="text-center">{{ cityWeather.main.temp }} °C</p>
-            <p class="text-center">{{ cityWeather.weather[0].description }}</p>
-          </div>
-          <div class="row-span-3">
-            <!-- list of hourly data -->
-          </div>
+      <!-- Right Side: Weather Icon & Description -->
+      <Card
+        class="col-span-1 h-full min-h-screen bg-white/90 backdrop-blur-md shadow-xl rounded-3xl flex flex-col justify-center items-center p-8">
+        <div class="flex flex-col items-center gap-4">
+          <img :src="WeatherImageIdentifier(cityWeather.weather[0].main)" alt="weather icon"
+            class="max-w-full max-h-48 drop-shadow" />
+          <p class="text-5xl font-extrabold text-indigo-700">{{ cityWeather.main.temp }} °C</p>
+          <p class="text-xl text-gray-500 capitalize">{{ cityWeather.weather[0].description }}</p>
+        </div>
+        <div class="mt-8 row-span-3 w-full">
+          <!-- list of hourly data (future: add a modern horizontal scroll or chart here) -->
         </div>
       </Card>
     </div>
