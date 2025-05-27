@@ -1,51 +1,58 @@
 <template>
-  <Navbar @search-city="handleSearchCity" @refresh-cities="handleRefreshCities"/>
+  <Navbar @search-city="handleSearchCity" @refresh-cities="handleRefreshCities" />
   <div v-if="isCitiesLoaded">
     <div
-      class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
-      <Card v-for="city in filteredCities" :key="city.info.name ?? ''">
-        <router-link :to="{ path: `/city/${city.info.sys.country}/${city.info.name.toLowerCase() ?? ''}` }">
-          <CardHeader class="pr-2 pl-2 flex flex-row gap-1">
-            <img :src="WeatherImageIdentifier('location') ?? ''" alt="location" class="max-w-8 w-full h-full">
-            <router-link :to="{ path: `/city/${city.info.sys.country}/${city.info.name.toLowerCase() ?? ''}` }"  class="text-lg font-semibold hover:underline" >{{ city.info.name ?? '' }} </router-link>
-            <!-- <hr class="bg-primary h-0.5"> -->
+      class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen transition-all duration-300">
+      <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
+        class="rounded-3xl shadow-xl hover:shadow-2xl border border-gray-200 bg-white/95 backdrop-blur-md transition-all duration-300 hover:scale-[1.025] cursor-pointer">
+        <router-link :to="{ path: `/city/${city.info.sys.country}/${city.info.name.toLowerCase() ?? ''}` }"
+          class="block p-4">
+          <CardHeader class="flex flex-row items-center gap-3 mb-2">
+            <img :src="WeatherImageIdentifier('location') ?? ''" alt="location"
+              class="w-8 h-8 rounded-full bg-blue-100 shadow" />
+            <span class="text-xl font-bold text-gray-900 tracking-wide hover:underline">
+              {{ city.info.name ?? '' }}
+            </span>
+            <span class="ml-auto px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-700 font-semibold">
+              {{ city.info.sys.country }}
+            </span>
           </CardHeader>
 
-          <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2">
+          <CardContent class="grid grid-cols-3 items-center gap-4 py-4">
             <!-- Weather Icon -->
-            <section class="flex flex-col gap-4 items-center">
-              <img :src="WeatherImageIdentifier(city.info.weather[0]?.main ?? '') ?? ''" alt="Weather Image">
+            <section class="flex flex-col items-center">
+              <img :src="WeatherImageIdentifier(city.info.weather[0]?.main ?? '') ?? ''" alt="Weather"
+                class="w-16 h-16 drop-shadow-lg" />
             </section>
-
-            <!-- Span to have a separation for icon and description -->
-            <div class="flex justify-center items-center w-full h-full">
-              <span class="w-full md:w-0.5 lg:w-0.5 h-[60%] bg-separator hidden sm:block"></span>
+            <!-- Divider -->
+            <div class="flex justify-center items-center">
+              <span class="w-0.5 h-16 bg-gradient-to-b from-indigo-200 to-indigo-400 rounded"></span>
             </div>
             <!-- City temperature and weather description -->
-            <section class="flex flex-row md:flex-col gap-4 justify-center text-center">
-              <p class="text-3xl 2xl:text-xl xl:text-lg mt-1 text-wrap font-semibold antialiased">{{ city.info.main.temp
-                ?? '' }}°C</p>
-              <p class="text-sm antialiased italic">{{ city.info.weather[0]?.description ?? '' }}</p>
+            <section class="flex flex-col items-center">
+              <p class="text-4xl font-extrabold text-indigo-800 mb-1 drop-shadow-sm">
+                {{ city.info.main.temp ?? '' }}°C
+              </p>
+              <p class="text-base text-gray-700 italic capitalize">
+                {{ city.info.weather[0]?.description ?? '' }}
+              </p>
             </section>
           </CardContent>
 
-          <CardFooter class="grid grid-cols-2 gap-12">
-            <!-- Weather Metrics -->
-            <div class="flex flex-col gap-4">
+          <CardFooter class="grid grid-cols-2 gap-6 pt-2">
+            <div class="flex flex-col gap-2">
               <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'"
-                :logo="WeatherImageIdentifier('humidity')" height="h-full" width="max-w-8 w-full"
-                justifyContent="justify-end" :imgFirst="false" />
-              <WeatherMetrics label="Wind Speed" :value="(city.info.wind.speed ?? '') + ' km/h'"
-                :logo="WeatherImageIdentifier('windy')" height="h-full" width="max-w-8 w-full"
-                justifyContent="justify-end" :imgFirst="false" />
+                :logo="WeatherImageIdentifier('humidity')" height="h-6" width="w-8" justifyContent="justify-end"
+                :imgFirst="false" />
+              <WeatherMetrics label="Wind" :value="(city.info.wind.speed ?? '') + ' km/h'"
+                :logo="WeatherImageIdentifier('windy')" height="h-6" width="w-8" justifyContent="justify-end"
+                :imgFirst="false" />
             </div>
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-2">
               <WeatherMetrics label="Feels Like" :value="(city.info.main.feels_like ?? '') + '°C'"
-                :logo="WeatherImageIdentifier('temperature')" height="h-full" width="max-w-8 w-full"
-                justifyContent="justify-start" />
+                :logo="WeatherImageIdentifier('temperature')" height="h-6" width="w-8" justifyContent="justify-start" />
               <WeatherMetrics label="Pressure" :value="city.info.main.pressure ?? ''"
-                :logo="WeatherImageIdentifier('pressure')" height="h-full" width="max-w-8 w-full"
-                justifyContent="justify-start" />
+                :logo="WeatherImageIdentifier('pressure')" height="h-6" width="w-8" justifyContent="justify-start" />
             </div>
           </CardFooter>
         </router-link>
@@ -55,62 +62,39 @@
 
   <div v-else>
     <div
-      class="p-8 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 place-items-center gap-4">
-      <Card v-for="city in filteredCities" :key="city.city ?? ''" class="animate-pulse shadow-lg cursor-progress"
-        bordercolor='slate-400'>
-        <CardHeader class="pr-2 pl-2 flex flex-row gap-4">
-          <div class="rounded-lg bg-slate-400 h-6 w-6"></div>
-          <div class="flex items-center w-full">
-            <div class="h-3 w-[50%] bg-slate-400 rounded"></div>
-          </div>
+      class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+      <Card v-for="city in filteredCities" :key="city.city ?? ''"
+        class="animate-pulse rounded-3xl shadow-lg border border-gray-200 bg-white/60">
+        <CardHeader class="flex flex-row gap-4 items-center p-4">
+          <div class="rounded-full bg-slate-200 h-8 w-8"></div>
+          <div class="flex-1 h-4 bg-slate-200 rounded"></div>
         </CardHeader>
-
-        <CardContent class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 items-center gap-2 mt-4">
-          <!-- Weather Icon -->
-          <section class="flex items-center w-full h-12">
-            <div class="h-full w-full bg-slate-400 rounded"></div>
+        <CardContent class="grid grid-cols-3 items-center gap-4 py-4">
+          <section class="flex items-center justify-center">
+            <div class="h-16 w-16 bg-slate-200 rounded-full"></div>
           </section>
-
-          <!-- Span to have a separation for icon and description -->
-          <div class="flex justify-center items-center w-full h-full">
-            <span class="w-full md:w-0.5 lg:w-0.5 h-[60%] bg-separator hidden sm:block"></span>
+          <div class="flex justify-center items-center">
+            <span class="w-0.5 h-16 bg-slate-200 rounded"></span>
           </div>
-          <!-- City temperature and weather description -->
-          <section class="flex flex-row md:flex-col gap-4 justify-center text-center h-12">
-            <div class="h-full w-full bg-slate-400 rounded"></div>
-            <div class="h-full w-full bg-slate-400 rounded"></div>
+          <section class="flex flex-col items-center gap-2">
+            <div class="h-6 w-20 bg-slate-200 rounded"></div>
+            <div class="h-4 w-24 bg-slate-200 rounded"></div>
           </section>
         </CardContent>
-
-        <CardFooter class="grid grid-cols-2 gap-12 mt-4">
-          <!-- Weather Metrics -->
-          <div class="flex flex-col gap-4">
-            <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
-              <div class="h-[50%] w-full bg-slate-400 rounded col-span-2"></div>
-              <div class="h-full w-full bg-slate-400 rounded"></div>
-            </section>
-            <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
-              <div class="h-[50%] w-full bg-slate-400 rounded col-span-2"></div>
-              <div class="h-full w-full bg-slate-400 rounded"></div>
-            </section>
+        <CardFooter class="grid grid-cols-2 gap-6 pt-2">
+          <div class="flex flex-col gap-2">
+            <div class="h-6 w-24 bg-slate-200 rounded"></div>
+            <div class="h-6 w-24 bg-slate-200 rounded"></div>
           </div>
-          <div class="flex flex-col gap-4">
-            <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
-              <div class="h-full w-full bg-slate-400 rounded"></div>
-              <div class="h-[50%] w-full bg-slate-400 rounded col-span-2"></div>
-            </section>
-            <section class="grid grid-cols-3 items-center w-full h-6 gap-4">
-              <div class="h-full w-full bg-slate-400 rounded"></div>
-              <div class="h-[50%] w-full bg-slate-400 rounded col-span-2"></div>
-            </section>
+          <div class="flex flex-col gap-2">
+            <div class="h-6 w-24 bg-slate-200 rounded"></div>
+            <div class="h-6 w-24 bg-slate-200 rounded"></div>
           </div>
         </CardFooter>
       </Card>
     </div>
   </div>
-
 </template>
-
 
 <script setup>
 // imported functions
