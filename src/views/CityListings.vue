@@ -2,7 +2,7 @@
   <Navbar @search-city="handleSearchCity" @refresh-cities="handleRefreshCities" />
   <div v-if="isCitiesLoaded">
     <div
-      class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 min-h-screen transition-all duration-300">
+      class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 transition-all duration-300">
       <Card v-for="city in filteredCities" :key="city.info.name ?? ''"
         class="rounded-3xl shadow-xl hover:shadow-2xl border border-gray-200 bg-white/95 backdrop-blur-md transition-all duration-300 hover:scale-[1.025] cursor-pointer">
         <router-link :to="{ path: `/city/${city.info.sys.country}/${city.info.name.toLowerCase() ?? ''}` }"
@@ -44,7 +44,7 @@
               <WeatherMetrics label="Humidity" :value="(city.info.main.humidity ?? '') + '%'"
                 :logo="WeatherImageIdentifier('humidity')" height="h-6" width="w-8" justifyContent="justify-end"
                 :imgFirst="false" />
-              <WeatherMetrics label="Wind" :value="(city.info.wind.speed ?? '') + ' km/h'"
+              <WeatherMetrics label="Wind" :value="(city.info.wind.speed ?? '') + 'km/h'"
                 :logo="WeatherImageIdentifier('windy')" height="h-6" width="w-8" justifyContent="justify-end"
                 :imgFirst="false" />
             </div>
@@ -62,7 +62,7 @@
 
   <div v-else>
     <div
-      class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+      class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 bg-gradient-to-br from-blue-50 to-indigo-100">
       <Card v-for="city in filteredCities" :key="city.city ?? ''"
         class="animate-pulse rounded-3xl shadow-lg border border-gray-200 bg-white/60">
         <CardHeader class="flex flex-row gap-4 items-center p-4">
